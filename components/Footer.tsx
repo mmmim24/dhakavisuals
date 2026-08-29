@@ -51,7 +51,7 @@ export default function Footer() {
                     <div className="md:col-span-1">
 
                         <div className="flex justify-center sm:justify-start items-center sm:items-start">
-                            <Image width={100} height={100} src={"/logo.png"} alt="Dhaka Visuals"></Image>
+                            <Image width={200} height={200} src={"/logo.png"} alt="Dhaka Visuals"></Image>
                         </div>
 
                         <p className="mt-3 text-sm text-center sm:text-left leading-relaxed">
