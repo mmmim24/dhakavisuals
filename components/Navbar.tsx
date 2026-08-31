@@ -14,7 +14,7 @@ const navItems: NavItem[] = [
     { name: "Portfolio", href: "#portfolio" },
     { name: "Services", href: "#services" },
     { name: "Testimonial", href: "#testimonial" },
-    { name: "Contact", href: "#contact" },
+    // { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -43,7 +43,7 @@ export default function Navbar() {
                         </Link>
                     ))}
                     <Link
-                        href="/contact"
+                        href="#contact"
                         className="rounded-full bg-white hover:bg-logo px-4 py-2 text-sm font-semibold text-logo hover:text-white transition border-2 hover:border-white"
                     >
                         Get Started
@@ -100,7 +100,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <Link
-                            href="/contact"
+                            href="#contact"
                             onClick={() => setIsOpen(false)}
                             className="mt-2 text-center rounded-md bg-white px-4 py-2.5 text-base font-semibold text-logo hover:text-white transition hover:bg-logo border-2 box-border"
                         >
