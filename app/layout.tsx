@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jakarta_sans } from "./fonts";
+import { mont } from "./fonts";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${Jakarta_sans.className} flex min-h-screen flex-col bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50`}>
+      <body className={`${mont.className} flex min-h-screen flex-col bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50`}>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
