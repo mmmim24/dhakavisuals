@@ -1,50 +1,20 @@
-import {
-  Inter,
-  Macondo,
-  Exo,
-  Marcellus,
-  Roboto_Slab,
-  Artifika,
-  Montserrat,
-} from "next/font/google";
-
-export const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const macondo = Macondo({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400"],
-});
-
-export const exo = Exo({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400"],
-});
+import { Marcellus, Plus_Jakarta_Sans, Grenze } from "next/font/google";
 
 export const marcellus = Marcellus({
-  subsets: ["latin"],
   display: "swap",
+  subsets: ["latin"],
   weight: ["400"],
 });
 
 // Non-variable fonts require a specific weight
-export const robotoSlab = Roboto_Slab({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
 
-export const artifika = Artifika({
+export const Jakarta_sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["400"],
 });
 
-export const montserrat = Montserrat({
+export const grenze = Grenze({
   subsets: ["latin"],
   display: "swap",
   weight: ["400"],
