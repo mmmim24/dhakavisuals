@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,16 +11,57 @@ interface NavItem {
 
 const navItems: NavItem[] = [
     { name: "Clients", href: "#clients" },
-    { name: "Portfolio", href: "#portfolio" },
     { name: "Services", href: "#services" },
+    { name: "Portfolio", href: "#portfolio" },
     { name: "Testimonial", href: "#testimonial" },
     // { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [activeHash, setActiveHash] = useState<string>("#clients");
 
     const toggleMenu = () => setIsOpen((prev) => !prev);
+
+    useEffect(() => {
+        const sections = navItems
+            .map((item) => document.getElementById(item.href.replace("#", "")))
+            .filter((section): section is HTMLElement => section instanceof HTMLElement);
+
+        if (!sections.length) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleEntry = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                if (visibleEntry) {
+                    setActiveHash(`#${visibleEntry.target.id}`);
+                }
+            },
+            {
+                root: null,
+                threshold: [0.2, 0.4, 0.6],
+                rootMargin: "-15% 0px -40% 0px",
+            }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleNavClick = (href: string) => {
+        setActiveHash(href);
+
+        const section = document.querySelector(href);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    };
 
     return (
         <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md transition-colors duration-300">
@@ -33,15 +74,28 @@ export default function Navbar() {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center space-x-8">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className="text-sm font-semibold transition-colors focus-within:outline-none hover:text-logo text-zinc-900"
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        const isActive = activeHash === item.href;
+
+                        return (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                aria-current={isActive ? "page" : undefined}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    handleNavClick(item.href);
+                                    window.history.pushState(null, "", item.href);
+                                }}
+                                className={`relative text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-logo focus-visible:ring-offset-2 ${isActive
+                                    ? "text-logo after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-logo"
+                                    : "text-zinc-900 hover:text-logo"
+                                    }`}
+                            >
+                                {item.name}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 <Link
