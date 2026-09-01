@@ -23,11 +23,11 @@ export default function Navbar() {
     const toggleMenu = () => setIsOpen((prev) => !prev);
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-logo">
+        <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md transition-colors duration-300">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
                 {/* Brand Logo */}
                 <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900">
-                    <Image width={100} height={100} src={"/logo.png"} alt="Dhaka Visuals"></Image>
+                    <Image className='w-auto h-auto' width={100} height={100} src={"/logo.png"} alt="Dhaka Visuals"></Image>
                 </Link>
 
 
@@ -37,18 +37,19 @@ export default function Navbar() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="text-sm font-semibold text-white transition-colors hover:text-zinc-900"
+                            className="text-sm font-semibold transition-colors focus-within:outline-none hover:text-logo text-zinc-900"
                         >
                             {item.name}
                         </Link>
                     ))}
-                    <Link
-                        href="#contact"
-                        className="rounded-full bg-white hover:bg-logo px-4 py-2 text-sm font-semibold text-logo hover:text-white transition border-2 hover:border-white"
-                    >
-                        Get Started
-                    </Link>
                 </nav>
+
+                <Link
+                    href="#contact"
+                    className="hidden md:flex rounded-full hover:bg-white bg-logo px-4 py-2 text-sm font-semibold hover:text-logo text-white transition border-2 hover:border-logo box-border"
+                >
+                    Get Started
+                </Link>
 
                 {/* Mobile Hamburger Button */}
                 <div className="flex md:hidden">
@@ -57,7 +58,7 @@ export default function Navbar() {
                         onClick={toggleMenu}
                         aria-expanded={isOpen}
                         aria-label="Toggle navigation menu"
-                        className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-white hover:text-logo focus:outline-none"
+                        className="inline-flex items-center justify-center rounded-md p-2 hover:text-black text-logo focus:outline-none"
                     >
                         <svg
                             className="h-6 w-6"
@@ -87,14 +88,14 @@ export default function Navbar() {
 
             {/* Mobile Drawer Menu */}
             {isOpen && (
-                <nav className="md:hidden border-t border-zinc-200 bg-logo px-4 pt-3 pb-6">
+                <nav className="md:hidden border-t border-logo bg-white px-4 pt-3 pb-6">
                     <div className="flex flex-col text-center space-y-3">
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
                                 onClick={() => setIsOpen(false)}
-                                className="rounded-md px-3 py-2 text-base font-semibold text-white hover:bg-white hover:text-logo"
+                                className="rounded-md px-3 py-2 text-base font-semibold text-logo hover:bg-logo hover:text-white"
                             >
                                 {item.name}
                             </Link>
@@ -102,7 +103,7 @@ export default function Navbar() {
                         <Link
                             href="#contact"
                             onClick={() => setIsOpen(false)}
-                            className="mt-2 text-center rounded-md bg-white px-4 py-2.5 text-base font-semibold text-logo hover:text-white transition hover:bg-logo border-2 box-border"
+                            className="mt-2 text-center rounded-md bg-logo px-4 py-2.5 text-base font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border"
                         >
                             Get Started
                         </Link>
