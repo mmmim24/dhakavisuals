@@ -55,7 +55,7 @@ export default function Clients() {
                 TRUSTED BY INDUSTRY LEADERS
             </h1>
             <Marquee autoFill={true} pauseOnHover={true} className="h-50" speed={150}>
-                <ul className="flex items-center justify-center gap-5 md:gap-10">
+                <ul className="flex items-center justify-center gap-5 md:gap-25 first:ml-5">
                     {[...clients].map((client, index) => (
                         <li key={`client-${client.name}-${index}`}>
                             <Image className="w-20 md:w-30 h-20 md:h-30 object-contain
