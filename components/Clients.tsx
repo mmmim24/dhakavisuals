@@ -35,22 +35,22 @@ const clients: Client[] = [
     { name: "shilpokola", src: shilpokola },
     { name: "tds", src: tds },
     { name: "aga", src: aga },
-    { name: "dhaka_broadcast", src: dhaka_broadcast },
+    // { name: "dhaka_broadcast", src: dhaka_broadcast },
     { name: "ccc", src: ccc },
     { name: "drik", src: drik },
     { name: "mindspace", src: mindspace },
-    { name: "goethe", src: goethe },
+    // { name: "goethe", src: goethe },
     { name: "fao", src: fao },
-    { name: "tbs", src: tbs },
+    // { name: "tbs", src: tbs },
     { name: "bit", src: bit },
-    { name: "lets_vibe", src: vibe },
+    // { name: "lets_vibe", src: vibe },
     { name: "alliance_francaise", src: af },
 ]
 
 import { inter } from "@/app/fonts";
 export default function Clients() {
     return (
-        <section id="clients" className="min-h-100 w-full flex flex-col items-center justify-center py-8">
+        <section id="clients" className="min-h-100 bg-white w-full flex flex-col items-center justify-center py-8">
             <h1 className={`${inter.className} mx-auto text-xl tracking-widest font-bold`}>
                 TRUSTED BY INDUSTRY LEADERS
             </h1>

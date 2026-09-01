@@ -5,7 +5,7 @@ export default function Services() {
             <h1 className={`${inter.className} text-3xl font-bold`}>
                 Services
             </h1>
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-lg font-semibold *:bg-logo *:text-white *:border *:rounded-lg *:px-2 *:py-4 *:h-40 *:hover:bg-white *:hover:text-logo *:hover:border-logo *:transition-all *:duration-300 *:hover:scale-120 *:flex *:items-center *:justify-center">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-lg font-semibold *:bg-white *:text-black *:border *:rounded-lg *:px-2 *:py-4 *:h-40 *:hover:bg-white *:hover:text-[#F9D3D6] *:hover:border-[#F9D3D6] *:transition-all *:duration-300 *:hover:scale-120 *:flex *:items-center *:justify-center">
                 <div>
                     <p >
                         Video Production
