@@ -63,7 +63,7 @@ export default function Footer() {
                     <div className="grid grid-cols-1 justify-center sm:justify-start items-center sm:items-start text-center sm:text-left gap-8 sm:grid-cols-3 md:col-span-3">
                         {footerSections.map((section) => (
                             <div key={section.title}>
-                                <h3 className="text-sm font-semibold text-zinc-900">
+                                <h3 className="text-md font-semibold">
                                     {section.title}
                                 </h3>
                                 <ul className="mt-4 space-y-2.5">
