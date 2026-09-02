@@ -28,4 +28,5 @@ body {
         repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(255, 41, 55, 0.03) 2px, rgba(255, 41, 55, 0.03) 3px, transparent 3px, transparent 8px);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
 }

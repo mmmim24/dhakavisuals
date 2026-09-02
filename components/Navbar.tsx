@@ -73,30 +73,36 @@ export default function Navbar() {
 
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center space-x-8">
-                    {navItems.map((item) => {
-                        const isActive = activeHash === item.href;
+                <div className="relative hidden md:flex items-center justify-center overflow-hidden rounded-3xl p-[1.5px]">
+                    {/* Rotating gradient beam behind the navbar */}
+                    <div
+                        className="absolute -inset-full animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_90%,transparent_90%,#e32332_50%,#e32332_50%)]"
+                    />
+                    <nav className="hidden md:flex bg-white z-1 rounded-3xl items-center px-4 py-2 space-x-8">
+                        {navItems.map((item) => {
+                            const isActive = activeHash === item.href;
 
-                        return (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                aria-current={isActive ? "page" : undefined}
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    handleNavClick(item.href);
-                                    window.history.pushState(null, "", item.href);
-                                }}
-                                className={`relative text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-logo focus-visible:ring-offset-2 ${isActive
-                                    ? "text-logo after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-logo"
-                                    : "text-zinc-900 hover:text-logo"
-                                    }`}
-                            >
-                                {item.name}
-                            </Link>
-                        );
-                    })}
-                </nav>
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    aria-current={isActive ? "page" : undefined}
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        handleNavClick(item.href);
+                                        window.history.pushState(null, "", item.href);
+                                    }}
+                                    className={`relative text-sm font-semibold transition-all duration-200  ${isActive
+                                        ? "text-logo "
+                                        : "text-zinc-900 hover:text-logo"
+                                        }`}
+                                >
+                                    {item.name}
+                                </Link>
+                            );
+                        })}
+                    </nav>
+                </div>
 
                 <Link
                     href="#contact"
