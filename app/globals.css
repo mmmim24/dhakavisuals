@@ -22,6 +22,10 @@
 
 body {
   background: var(--background);
+  background: repeating-linear-gradient(22.5deg, transparent, transparent 20px, rgba(75, 85, 99, 0.06) 20px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(135deg, transparent, transparent 5px, rgba(107, 114, 128, 0.05) 25px, rgba(107, 114, 128, 0.05) 25px, transparent 75px, transparent 75px),
+        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(255, 65, 81, 0.04) 2px, rgba(255, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(255, 41, 55, 0.03) 2px, rgba(255, 41, 55, 0.03) 3px, transparent 3px, transparent 8px);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }

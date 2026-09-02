@@ -47,15 +47,15 @@ const clients: Client[] = [
     { name: "alliance_francaise", src: af },
 ]
 
-import { inter } from "@/app/fonts";
+
 export default function Clients() {
     return (
-        <section id="clients" className="min-h-100 bg-white w-full flex flex-col items-center justify-center py-8">
-            <h1 className={`${inter.className} mx-auto text-xl tracking-widest font-bold`}>
+        <section id="clients" className="min-h-100 w-full flex flex-col gap-4 items-center justify-center py-8">
+            <h5 className={`mx-auto text-sm tracking-[4px] font-bold`}>
                 TRUSTED BY INDUSTRY LEADERS
-            </h1>
-            <Marquee autoFill={true} pauseOnHover={true} className="h-50" speed={150}>
-                <ul className="flex items-center justify-center gap-5 md:gap-25 first:ml-5">
+            </h5>
+            <Marquee autoFill={true} pauseOnHover={true} className="bg-zinc-50  shadow-xl py-8" speed={100}>
+                <ul className="flex items-center justify-center gap-5 md:gap-25 first:ml-13">
                     {[...clients].map((client, index) => (
                         <li key={`client-${client.name}-${index}`}>
                             <Image className="w-20 md:w-30 h-20 md:h-30 object-contain

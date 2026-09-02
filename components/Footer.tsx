@@ -44,18 +44,18 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-logo text-white">
+        <footer className="">
             <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
                     {/* Brand Details */}
                     <div className="md:col-span-1">
 
                         <div className="flex justify-center sm:justify-start items-center sm:items-start">
-                            <Image width={200} height={200} src={"/logo.png"} alt="Dhaka Visuals"></Image>
+                            <Image width={200} height={200} src={"/logo.svg"} alt="Dhaka Visuals"></Image>
                         </div>
 
-                        <p className="mt-3 text-sm text-center sm:text-left leading-relaxed">
-                            Audio Visual Production and Event Coverage
+                        <p className="mt-3 text-xl tracking-tight text-center sm:text-left leading-relaxed">
+                            Audio Visual Production
                         </p>
                     </div>
 
