@@ -77,6 +77,16 @@ export default function Carousel({ images }: CarouselProps) {
         <>
             <div className="relative w-full max-w-6xl mx-auto overflow-hidden group">
 
+                <button
+                    onClick={prevSlide}
+                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    aria-label="Previous Slide"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+
                 {/* Carousel Track */}
                 <div
                     className="flex transition-transform duration-500 ease-in-out"
@@ -101,15 +111,7 @@ export default function Carousel({ images }: CarouselProps) {
                 </div>
 
                 {/* Navigation Buttons */}
-                <button
-                    onClick={prevSlide}
-                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                    aria-label="Previous Slide"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
+
 
                 <button
                     onClick={nextSlide}

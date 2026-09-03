@@ -10,8 +10,8 @@ const photographyImages = [
 
 export default function Photography() {
     return (
-        <div className="space-y-8">
-            <h2 className="text-2xl tracking-widest">Photography</h2>
+        <div className="space-y-8 w-full">
+            <h2 className="text-2xl tracking-widest text-center">Photography</h2>
             <Carousel images={photographyImages} />
         </div>
     )

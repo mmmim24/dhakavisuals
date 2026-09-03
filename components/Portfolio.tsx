@@ -7,7 +7,7 @@ export default function Portfolio() {
             <h1 className={` text-3xl font-bold`}>
                 Portfolio
             </h1>
-            <div className="space-y-20">
+            <div className="space-y-20 w-full">
                 <Photography />
                 <Videography />
             </div>
