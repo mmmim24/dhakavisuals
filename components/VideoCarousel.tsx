@@ -51,7 +51,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
 
     return (
         // Outer flex container aligns buttons and the track side-by-side
-        <div className="flex items-center justify-between w-full max-w-7xl mx-auto gap-4 px-4">
+        <div className="flex items-center justify-between w-full mx-auto gap-4 px-4">
 
             {/* Previous Button - Placed entirely outside the iframe container */}
             <button

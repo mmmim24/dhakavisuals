@@ -20,7 +20,7 @@ const carouselVideos = [
 export default function Videography() {
     return (
         <div className="space-y-8">
-            <h2 className="text-2xl tracking-widest">Videography</h2>
+            <h2 className="text-2xl text-center tracking-widest">Videography</h2>
             <VideoCarousel videos={carouselVideos} />
         </div>
     )
