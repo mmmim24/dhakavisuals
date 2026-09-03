@@ -10,6 +10,14 @@ import {
   Marcellus,
   Plus_Jakarta_Sans,
   Grenze,
+  Sansita,
+  Merriweather,
+  Lora,
+  DM_Serif_Display,
+  DM_Sans,
+  Playfair_Display,
+  Oleo_Script,
+  Kaushan_Script,
 } from "next/font/google";
 
 export const marcellus = Marcellus({
@@ -70,6 +78,47 @@ export const robotoserif = Roboto_Serif({
   weight: ["400"],
 });
 export const roboto_slab = Roboto_Slab({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+
+export const sansita = Sansita({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const merriweather = Merriweather({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const lora = Lora({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const dM_Sans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const dM_Serif_Display = DM_Serif_Display({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const playfair_Display = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const oleo_Script = Oleo_Script({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+});
+export const kaushan_Script = Kaushan_Script({
   subsets: ["latin"],
   display: "swap",
   weight: ["400"],
