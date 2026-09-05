@@ -101,6 +101,7 @@ export default function Carousel({ images }: CarouselProps) {
                                 <Image
                                     src={img.src}
                                     alt={img.alt || `Carousel image ${index + 1}`}
+                                    loading='eager'
                                     fill
                                     className="object-cover rounded-lg shadow-md pointer-events-none"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

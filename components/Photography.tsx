@@ -2,10 +2,10 @@ import Image from "next/image";
 import Carousel from "./Carousel";
 
 const photographyImages = [
-    { src: "/brac_1.jpg", alt: "BRAC World 1" },
-    { src: "/brac_2.jpg", alt: "BRAC World 2" },
-    { src: "/brac_3.jpg", alt: "BRAC World 3" },
-    { src: "/brac_4.jpg", alt: "BRAC World 4" },
+    { src: "/photo/brac_1.jpg", alt: "BRAC World 1" },
+    { src: "/photo/brac_2.jpg", alt: "BRAC World 2" },
+    { src: "/photo/brac_3.jpg", alt: "BRAC World 3" },
+    { src: "/photo/brac_4.jpg", alt: "BRAC World 4" },
 ];
 
 export default function Photography() {

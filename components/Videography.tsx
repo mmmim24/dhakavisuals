@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import image1 from "@/public/thumbnail_1.png";
-import image2 from "@/public/thumbnail_2.png";
+import image1 from "@/public/video/thumbnail_1.png";
+import image2 from "@/public/video/thumbnail_2.png";
 import { useRouter } from "next/navigation";
 export default function Videography() {
 

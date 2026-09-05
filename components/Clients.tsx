@@ -1,14 +1,14 @@
 import Image from "next/image";
-import brac from "@/public/brac.png";
-import fao from "@/public/fao_logo_3lines_en1.webp"
-import ypf from "@/public/YPF-Logo.png"
-import buet from "@/public/BUET_LOGO.svg"
-import bs23 from "@/public/Brain-Station-23-Logo.jpg"
-import aga from "@/public/aka.png"
-import ccc from "@/public/cathweld construction company.png"
-import bit from "@/public/bit.jpeg"
-import fsa from "@/public/fsa.png"
-import mindspace from "@/public/mindspace.jpeg"
+import brac from "@/public/clients/brac.png";
+import fao from "@/public/clients/FAO_logo.svg"
+import ypf from "@/public/clients/YPF-Logo.png"
+import buet from "@/public/clients/BUET_LOGO.svg"
+import bs23 from "@/public/clients/Brain-Station-23-Logo.png"
+import aga from "@/public/clients/aka.png"
+import ccc from "@/public/clients/cathweld construction company.png"
+import bit from "@/public/clients/bit.png"
+import fsa from "@/public/clients/fsa.png"
+import mindspace from "@/public/clients/mindspace.png"
 
 
 import Marquee from "react-fast-marquee";
@@ -39,7 +39,7 @@ export default function Clients() {
                 TRUSTED BY
             </h5>
             <Marquee autoFill={true} pauseOnHover={true} className="bg-zinc-50  shadow-xl py-8" speed={100}>
-                <ul className="flex items-center justify-center gap-5 md:gap-25 first:ml-13">
+                <ul className="flex items-center justify-center gap-5 md:gap-25 first:ml-20">
                     {[...clients].map((client, index) => (
                         <li key={`client-${client.name}-${index}`}>
                             <Image className="w-20 md:w-30 h-20 md:h-30 object-contain
