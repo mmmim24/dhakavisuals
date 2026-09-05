@@ -1,27 +1,40 @@
-import VideoCarousel from './VideoCarousel';
-const carouselVideos = [
-    {
-        title: 'YPF',
-        embedUrl: 'https://www.youtube.com/embed/JkSNEetfCwI?si=UJ7nf_s48p8NWn5M'
-    },
-    {
-        title: 'BRAC',
-        embedUrl: 'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FBRACWorld%2Fvideos%2F662685559634459%2F&show_text=false&width=380&t=0'
-    },
-    {
-        title: 'Brain Station 23',
-        embedUrl: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F924603657345713%2F&show_text=false&width=560&t=0'
-    },
-    {
-        title: 'YouTube Example 1',
-        embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-    },
-];
 export default function Videography() {
     return (
-        <div className="space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8">
             <h2 className="text-2xl text-center tracking-widest">Videography</h2>
-            <VideoCarousel videos={carouselVideos} />
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-lg font-semibold *:bg-white *:text-black *:border *:rounded-lg *:px-2 *:py-4 *:h-120 *:hover:bg-white *:hover:text-logo *:hover:border-logo *:transition-all *:duration-300 *:hover:scale-110 *:flex *:items-center *:justify-center">
+                <div className="hover:after:content-['Commercial'] hover:after:absolute hover:after:inset-0 hover:after:bg-zinc-400 hover:after:text-amber-50 text-center items-center justify-center hover:after:my-auto hover:after:bg-opacity-50 hover:after:z-10">
+                    <p >
+                        Video Production
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Event Coverage
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Photography
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Editing
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Consulting
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Training
+                    </p>
+                </div>
+            </div>
+
         </div>
     )
 }

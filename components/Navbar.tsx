@@ -68,7 +68,7 @@ export default function Navbar() {
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
                 {/* Brand Logo */}
                 <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900">
-                    <Image className='w-auto h-auto' width={100} height={100} src={"/logo.png"} alt="Dhaka Visuals"></Image>
+                    <Image className='w-auto h-auto' width={100} height={100} src={"/logo.png"} loading="eager" alt="Dhaka Visuals"></Image>
                 </Link>
 
 
