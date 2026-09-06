@@ -34,12 +34,12 @@ const clients: Client[] = [
 
 export default function Clients() {
     return (
-        <section id="clients" className="min-h-100 w-full flex flex-col gap-4 items-center justify-center py-8">
-            <h5 className={`mx-auto text-sm tracking-[4px] font-bold`}>
+        <section id="clients" className="bg-zinc-50 w-full flex flex-col gap-8 items-center justify-center py-8 shadow-xl">
+            <h5 className={`mx-auto text-sm tracking-[8px] font-bold`}>
                 TRUSTED BY
             </h5>
-            <Marquee autoFill={true} pauseOnHover={true} className="bg-zinc-50  shadow-xl py-8" speed={100}>
-                <ul className="flex items-center justify-center gap-5 md:gap-25 first:ml-20">
+            <Marquee autoFill={true} pauseOnHover={true} speed={100}>
+                <ul className="flex items-center justify-center gap-15 md:gap-25 first:ml-15 md:first:ml-20">
                     {[...clients].map((client, index) => (
                         <li key={`client-${client.name}-${index}`}>
                             <Image className="w-20 md:w-30 h-20 md:h-30 object-contain
