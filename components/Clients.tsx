@@ -12,6 +12,7 @@ import mindspace from "@/public/clients/mindspace.png"
 
 
 import Marquee from "react-fast-marquee";
+import { mont } from "@/app/fonts";
 
 interface Client {
     name: string,
@@ -34,16 +35,16 @@ const clients: Client[] = [
 
 export default function Clients() {
     return (
-        <section id="clients" className="bg-zinc-50 w-full flex flex-col gap-8 items-center justify-center py-8 shadow-xl">
-            <h5 className={`mx-auto text-sm tracking-[8px] font-bold`}>
+        <section id="clients" className="bg-zinc-50 w-full flex flex-col gap-4 items-center justify-center py-4 shadow-xl">
+            <h5 className={`${mont.className} mx-auto text-sm md:text-base tracking-[8px]`}>
                 TRUSTED BY
             </h5>
             <Marquee autoFill={true} pauseOnHover={true} speed={100}>
-                <ul className="flex items-center justify-center gap-15 md:gap-25 first:ml-15 md:first:ml-20">
+                <ul className="h-30 md:h-45 flex items-center justify-center gap-15 md:gap-25 first:ml-15 md:first:ml-20">
                     {[...clients].map((client, index) => (
                         <li key={`client-${client.name}-${index}`}>
                             <Image className="w-20 md:w-30 h-20 md:h-30 object-contain
-                            hover:scale-150 transition-all 5s" src={client.src} width={150} height={150} alt={client.name} />
+                            hover:scale-150 transition-all duration-500" src={client.src} width={150} height={150} alt={client.name} />
                         </li>
                     ))}
                 </ul>

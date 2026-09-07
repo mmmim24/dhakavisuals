@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { mont } from "@/app/fonts";
 
 interface FooterLink {
     name: string;
@@ -44,10 +45,10 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="">
+        <footer className={`${mont.className}`}>
             <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-                    {/* Brand Details */}
+
                     <div className="md:col-span-1">
 
                         <div className="flex justify-center sm:justify-start items-center sm:items-start">
@@ -55,11 +56,10 @@ export default function Footer() {
                         </div>
 
                         <p className="mt-3 text-xl tracking-tight text-center sm:text-left leading-relaxed">
-                            Audio Visual Production
+                            Premium Multimedia Production & Visual Documentation
                         </p>
                     </div>
 
-                    {/* Navigation Columns */}
                     <div className="grid grid-cols-1 justify-center sm:justify-start items-center sm:items-start text-center sm:text-left gap-8 sm:grid-cols-3 md:col-span-3">
                         {footerSections.map((section) => (
                             <div key={section.title}>
@@ -83,7 +83,6 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
                 <div className="mt-12 border-t border-zinc-200 pt-8 sm:flex sm:items-center sm:justify-between text-center sm:text-left">
                     <p className="text-xs">
                         &copy; {currentYear} Dhaka Visuals , BD. All rights reserved.

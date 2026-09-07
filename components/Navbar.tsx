@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { mont } from "@/app/fonts";
 
 interface NavItem {
     name: string;
@@ -64,17 +65,15 @@ export default function Navbar() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-transparent backdrop-blur-md transition-colors duration-300">
+        <header className={`${mont.className} sticky top-0 z-49 w-full bg-transparent backdrop-blur-md transition-colors duration-300`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
-                {/* Brand Logo */}
+
                 <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900">
                     <Image className='w-auto h-auto' width={100} height={100} src={"/logo.png"} loading="eager" alt="Dhaka Visuals"></Image>
                 </Link>
 
-
-                {/* Desktop Navigation */}
                 <div className="relative hidden md:flex items-center justify-center overflow-hidden rounded-3xl p-[1.5px]">
-                    {/* Rotating gradient beam behind the navbar */}
+
                     <div
                         className="absolute -inset-full animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_90%,transparent_90%,#e32332_50%,#e32332_50%)]"
                     />
@@ -111,7 +110,6 @@ export default function Navbar() {
                     Get Started
                 </Link>
 
-                {/* Mobile Hamburger Button */}
                 <div className="flex md:hidden">
                     <button
                         type="button"
@@ -146,7 +144,6 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Drawer Menu */}
             {isOpen && (
                 <nav className="md:hidden border-t border-logo bg-white px-4 pt-3 pb-6">
                     <div className="flex flex-col text-center space-y-3">

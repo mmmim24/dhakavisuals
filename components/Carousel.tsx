@@ -13,29 +13,26 @@ export default function Carousel({ images }: CarouselProps) {
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-    // Handle window resize to determine visible items
     useEffect(() => {
         const updateItemsPerPage = () => {
             if (window.innerWidth >= 1024) {
-                setItemsPerPage(3); // lg
+                setItemsPerPage(3);
             } else if (window.innerWidth >= 768) {
-                setItemsPerPage(2); // md
+                setItemsPerPage(2);
             } else {
-                setItemsPerPage(1); // sm
+                setItemsPerPage(1);
             }
         };
 
-        updateItemsPerPage(); // Initial calculation
+        updateItemsPerPage();
         window.addEventListener('resize', updateItemsPerPage);
 
         return () => window.removeEventListener('resize', updateItemsPerPage);
     }, []);
 
     const totalItems = images.length;
-    // Calculate max index to prevent exposing empty space at the end of the track
     const maxIndex = Math.max(0, totalItems - itemsPerPage);
 
-    // Navigation Logic
     const nextSlide = () => {
         setCurrentIndex((prevIndex) => (prevIndex >= maxIndex ? 0 : prevIndex + 1));
     };
@@ -44,7 +41,6 @@ export default function Carousel({ images }: CarouselProps) {
         setCurrentIndex((prevIndex) => (prevIndex <= 0 ? maxIndex : prevIndex - 1));
     };
 
-    // Touch & Swipe Logic
     const minSwipeDistance = 50;
 
     const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -70,7 +66,6 @@ export default function Carousel({ images }: CarouselProps) {
         }
     };
 
-    // Calculate how far to push the track based on current index and screen size
     const shiftPercentage = (currentIndex * 100) / itemsPerPage;
 
     return (
@@ -87,7 +82,6 @@ export default function Carousel({ images }: CarouselProps) {
                     </svg>
                 </button>
 
-                {/* Carousel Track */}
                 <div
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${shiftPercentage}%)` }}
@@ -110,9 +104,6 @@ export default function Carousel({ images }: CarouselProps) {
                         </div>
                     ))}
                 </div>
-
-                {/* Navigation Buttons */}
-
 
                 <button
                     onClick={nextSlide}

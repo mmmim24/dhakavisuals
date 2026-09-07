@@ -4,6 +4,7 @@ import image1 from "@/public/video/thumbnail_1.png";
 import image2 from "@/public/video/thumbnail_2.png";
 import image3 from "@/public/video/thumbnail_3.png";
 import { useRouter } from "next/navigation";
+import { mont } from "@/app/fonts";
 export default function Videography() {
 
     const router = useRouter();
@@ -14,7 +15,7 @@ export default function Videography() {
     return (
         <div className="max-w-7xl mx-auto space-y-8">
 
-            <h2 className="text-2xl text-center tracking-widest">Videography</h2>
+            <h2 className={`${mont.className} text-2xl text-center tracking-widest`}>Videography</h2>
 
             <div onClick={handleVideoPage} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
