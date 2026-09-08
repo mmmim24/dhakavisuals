@@ -44,7 +44,7 @@ export default function Clients() {
                     {[...clients].map((client, index) => (
                         <li key={`client-${client.name}-${index}`}>
                             <Image className="w-20 md:w-30 h-20 md:h-30 object-contain
-                            hover:scale-150 transition-all duration-500" src={client.src} width={150} height={150} alt={client.name} />
+                            hover:scale-150 transition-all duration-500" src={client.src} loading="eager" width={150} height={150} alt={client.name} />
                         </li>
                     ))}
                 </ul>
