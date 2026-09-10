@@ -34,7 +34,7 @@ export default function Services() {
                 {
                     services.map((service) => {
                         return (
-                            <div className="bg-white text-black border rounded-lg px-8 py-8 h-40 hover:bg-white hover:text-logo hover:border-logo transition-all duration-300 hover:scale-120 flex flex-col items-center justify-center">
+                            <div key={`${service}`} className="bg-white text-black border rounded-lg px-8 py-8 h-40 hover:bg-white hover:text-logo hover:border-logo transition-all duration-300 hover:scale-120 flex flex-col items-center justify-center">
                                 <p>
                                     {service.name}
                                 </p>
