@@ -65,6 +65,7 @@ export default function Videography() {
                         <Image
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             src={video.thumbnail_image}
                             loading="eager"
                             alt={`${video.client_name} - ${video.category}`}
