@@ -33,7 +33,7 @@ export default function LoginPage() {
         const totpFactor = factorsData?.totp?.[0]
 
         if (!totpFactor) {
-            router.push('/dashboard')
+            router.push('/enroll')
             return
         }
 

@@ -28,13 +28,20 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (
+    !user &&
+    (request.nextUrl.pathname.startsWith("/dashboard") ||
+      request.nextUrl.pathname.startsWith("/enroll"))
+  ) {
     return NextResponse.redirect(new URL("/login", request.url));
+  } else if (user && request.nextUrl.pathname.startsWith("/login")) {
+    console.log(user);
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return response;
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/login/:path*", "/enroll"],
 };
