@@ -7,8 +7,8 @@ import "./globals.css";
 import TCursor from "@/components/TCursor";
 
 export const metadata: Metadata = {
-  title: "Dhaka Visuals BD",
-  description: "Premium Multimedia Production & Visual Documentation",
+  title: "Dhaka Visuals",
+  description: "Premium Audio Visual Production Company",
 };
 
 export default function RootLayout({
