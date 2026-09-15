@@ -94,7 +94,7 @@ export default function Footer() {
                         <Link href="https://www.instagram.com/dhakavisuals.bd/" target="_blank" rel="noreferrer" className="text-xs hover:text-zinc-900">
                             Instagram
                         </Link>
-                        <Link href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-xs hover:text-zinc-900">
+                        <Link href="https://www.linkedin.com/company/dhakavisuals/home/" target="_blank" rel="noreferrer" className="text-xs hover:text-zinc-900">
                             LinkedIn
                         </Link>
                     </div>
