@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 interface Video {
     embedUrl: string;
+    aspect: string;
     title?: string;
 }
 
@@ -73,7 +74,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
                     {videos.map((video, index) => (
                         <div key={index} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
                             {/* Aspect-video maintains 16:9 ratio for iframes */}
-                            <div className="relative w-full aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                            <div className={`relative w-full aspect-${video.aspect} bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-200`}>
                                 <iframe
                                     src={video.embedUrl}
                                     title={video.title || `Video ${index + 1}`}
