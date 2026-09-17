@@ -17,6 +17,7 @@ export default async function Videography() {
         category: video.category,
         embedUrl: video.video_link,
         thumbnail: video.thumbnail_url,
+        aspect: video.aspect_ratio
     }));
 
     // console.log(videos, error);

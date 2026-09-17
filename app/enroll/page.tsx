@@ -17,6 +17,8 @@ export default function EnrollMfaPage() {
 
         let { data, error } = await supabase.auth.mfa.enroll({
             factorType: 'totp',
+            issuer: 'Dhaka Visuals',
+            friendlyName: 'Dhaka Visuals'
         });
 
         if (error) {
