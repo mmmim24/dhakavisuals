@@ -65,7 +65,7 @@ export default function Navbar() {
     };
 
     return (
-        <header className={`${mont.className} sticky top-0 z-49 w-full bg-transparent backdrop-blur-md transition-colors duration-300`}>
+        <header className={`${mont.className} sticky top-0 z-49 w-full bg-transparent backdrop-blur-sm transition-colors duration-300`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
 
                 <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900">
@@ -105,7 +105,7 @@ export default function Navbar() {
 
                 <Link
                     href="#contact"
-                    className="hidden md:flex rounded-full hover:bg-white bg-logo px-4 py-2 text-sm font-semibold hover:text-logo text-white transition border-2 hover:border-logo box-border"
+                    className="hidden w-32 md:flex justify-center rounded-full hover:bg-white bg-logo px-4 py-2 text-sm font-semibold hover:text-logo text-white transition border-2 hover:border-logo box-border"
                 >
                     Get Started
                 </Link>

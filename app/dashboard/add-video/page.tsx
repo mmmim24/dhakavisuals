@@ -11,7 +11,7 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
     const [clientName, setClientName] = useState('')
     const [category, setCategory] = useState('')
     const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
-    const [videoLink, setVideoLink] = useState('')
+    const [videoUrl, setVideoUrl] = useState('')
     const [ratio, setRatio] = useState('')
     const [uploading, setUploading] = useState(false)
     const [error, setError] = useState('')
@@ -52,11 +52,11 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                 .from('video_thumbnails')
                 .getPublicUrl(fileName)
 
-            const { error: insertError } = await supabase.from('video').insert({
+            const { error: insertError } = await supabase.from('videos').insert({
                 client_name: clientName,
                 category: category,
-                video_link: embedToUrl(videoLink),
-                thumbnail_image: urlData.publicUrl,
+                video_url: embedToUrl(videoUrl),
+                image_url: urlData.publicUrl,
                 aspect_ratio: ratio
             })
 
@@ -68,7 +68,7 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
 
             setClientName('')
             setCategory('')
-            setVideoLink('')
+            setVideoUrl('')
             setThumbnailFile(null)
             setRatio('')
             setUploading(false)
@@ -106,8 +106,8 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                     <input
                         type="text"
                         placeholder="YouTube or Facebook video link"
-                        value={videoLink}
-                        onChange={(e) => setVideoLink(e.target.value)}
+                        value={videoUrl}
+                        onChange={(e) => setVideoUrl(e.target.value)}
                         className="w-full rounded-md border px-3 py-2"
                         required
                     />

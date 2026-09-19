@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 export default async function Videography() {
     const supabase = await createClient();
     const { data: videos, error } = await supabase
-        .from('video')
+        .from('videos')
         .select('*')
         .order('created_at', { ascending: true });
 
@@ -15,7 +15,7 @@ export default async function Videography() {
     const carouselVideos = (videos ?? []).map((video) => ({
         clientName: video.client_name,
         category: video.category,
-        embedUrl: video.video_link,
+        embedUrl: video.video_url,
         thumbnail: video.thumbnail_url,
         aspect: video.aspect_ratio
     }));

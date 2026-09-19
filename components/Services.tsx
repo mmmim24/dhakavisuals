@@ -1,46 +1,52 @@
 const services = [
     {
         name: "Video Production",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ullam officiis, accusantium est maxime culpa nostrum eos molestiae distinctio debitis!"
+        list: ["Brand Commercials", "Product Campaigns", "Real Estate & Architecture", "Social Ads & Reels", "Documentaries"]
+    },
+    {
+        name: "Content Creation",
+        list: ["High-Converting Video Sales Letters", "Talking Heads", "Creator Content & Vlogs"]
+    },
+    {
+        name: "Creative Photography",
+        list: ["Product Shoots", "Brand Portfolios", "Studio Sessions", "Interiors & Architecture", "Social Documentaries"]
     },
     {
         name: "Event Coverage",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsa consectetur recusandae nesciunt veniam iusto labore non, perspiciatis distinctio magni?"
+        list: ["Live Documentation", "Dynamic Reels", "Full-Session Recordings"]
     },
     {
-        name: 'Photography',
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eveniet eligendi aut necessitatibus ad ullam quos voluptatibus aspernatur facilis repellendus."
+        name: "Podcast Production",
+        list: ["End-to-End Audio Visual Production", "Set Design", "Editing"]
     },
     {
-        name: 'Editing',
-        description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus animi enim sapiente deserunt ratione laborum corporis officia tempora laboriosam nisi."
-    },
-    {
-        name: "Consulting",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quis iusto laboriosam illum, earum atque aperiam omnis veritatis possimus quo."
-    },
-    {
-        name: "Training",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, perferendis ex! Vel necessitatibus quam debitis eos, libero amet delectus eaque."
+        name: "Post-Production",
+        list: ["Advanced Editing", "Color Grading", "Motion Graphics & VFX", "Audio Engineering"]
     },
 ]
 export default function Services() {
     return (
         <section id="services" className="min-h-100 w-full flex flex-col gap-16 items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
-            <h1 className={`text-5xl font-bold`}>
+            <h1 className={`text-5xl font-bold hover:bg-logo hover:text-white transition-colors duration-500 ease-in`}>
                 Services
             </h1>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-lg font-semibold">
                 {
                     services.map((service) => {
                         return (
-                            <div key={service.name} className="bg-white text-black border rounded-lg px-8 py-8 h-40 hover:bg-white hover:text-logo hover:border-logo transition-all duration-300 hover:scale-120 flex flex-col items-center justify-center">
-                                <p>
+                            <div key={service.name} className="bg-white text-black border rounded-lg px-12 py-8 gap-10 h-70 hover:border-logo transition-all duration-300 hover:scale-105 flex flex-col items-start justify-start">
+                                <p className="text-2xl -ml-4">
                                     {service.name}
                                 </p>
-                                <p>
-                                    {/* {service.description} */}
-                                </p>
+                                <ul className="marker:text-logo list-disc">
+                                    {
+                                        service.list.map((l, index) => {
+                                            return (
+                                                <li key={index}>{l}</li>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </div>
                         )
                     })

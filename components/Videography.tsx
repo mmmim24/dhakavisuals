@@ -9,7 +9,7 @@ type VideoItem = {
     id: string;
     client_name: string;
     category: string;
-    thumbnail_image: string;
+    image_url: string;
 };
 
 export default function Videography() {
@@ -24,8 +24,8 @@ export default function Videography() {
     useEffect(() => {
         async function loadVideos() {
             const { data, error } = await supabase
-                .from("video")
-                .select("id, client_name, category, thumbnail_image")
+                .from('videos')
+                .select("id, client_name, category, image_url")
                 .order("created_at", { ascending: true });
 
             if (!error && data) {
@@ -67,13 +67,13 @@ export default function Videography() {
                             {previewVideos.map((video) => (
                                 <div
                                     key={video.id}
-                                    className="group relative aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+                                    className="group relative aspect-video md:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
                                 >
                                     <Image
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
                                         fill
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        src={video.thumbnail_image}
+                                        src={video.image_url}
                                         loading="eager"
                                         alt={`${video.client_name} - ${video.category}`}
                                     />
@@ -91,13 +91,13 @@ export default function Videography() {
                             ))}
                             <div
                                 key={videos[5].id}
-                                className="group relative aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+                                className="group relative aspect-video md:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
                             >
                                 <Image
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    src={videos[5].thumbnail_image}
+                                    src={videos[5].image_url}
                                     loading="eager"
                                     alt={`${videos[5].client_name} - ${videos[5].category}`}
                                 />
@@ -119,13 +119,13 @@ export default function Videography() {
                             {videos.map((video) => (
                                 <div
                                     key={video.id}
-                                    className="group relative aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+                                    className="group relative aspect-video md:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
                                 >
                                     <Image
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
                                         fill
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        src={video.thumbnail_image}
+                                        src={video.image_url}
                                         loading="eager"
                                         alt={`${video.client_name} - ${video.category}`}
                                     />
