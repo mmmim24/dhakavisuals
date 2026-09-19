@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 interface CarouselProps {
-    images: { src: string; alt?: string }[];
+    images: {
+        id: string;
+        title: string;
+        folder: string;
+        client: string;
+        url: string
+    }[];
 }
 
 export default function Carousel({ images }: CarouselProps) {
@@ -89,12 +95,12 @@ export default function Carousel({ images }: CarouselProps) {
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEndHandler}
                 >
-                    {images.map((img, index) => (
-                        <div key={index} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
+                    {images.map((img) => (
+                        <div key={img.id} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
                             <div className="relative hover:scale-110 hover:rounded-lg transition-all duration-500 w-full h-64">
                                 <Image
-                                    src={img.src}
-                                    alt={img.alt || `Carousel image ${index + 1}`}
+                                    src={img.url}
+                                    alt={`${img.title}_${img.client}_${img.folder}` || `Carousel image ${img.id + 1}`}
                                     loading='eager'
                                     fill
                                     className="object-cover rounded-lg shadow-md pointer-events-none"

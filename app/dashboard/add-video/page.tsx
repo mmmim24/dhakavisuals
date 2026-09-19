@@ -117,7 +117,7 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                         </label>
                         <input
                             type="file"
-                            accept="image/jpeg"
+                            accept="image/*"
                             onChange={(e) => setThumbnailFile(e.target.files?.[0] ?? null)}
                             className="w-full text-logo file:bg-zinc-200 file:p-2 file:rounded-md file:text-black file:mr-10 p-2 border border-zinc-900 rounded-md"
                             required
