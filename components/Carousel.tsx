@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface CarouselProps {
@@ -18,6 +19,8 @@ export default function Carousel({ images }: CarouselProps) {
     const [itemsPerPage, setItemsPerPage] = useState(1);
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+    const router = useRouter();
 
     useEffect(() => {
         const updateItemsPerPage = () => {
@@ -38,6 +41,10 @@ export default function Carousel({ images }: CarouselProps) {
 
     const totalItems = images.length;
     const maxIndex = Math.max(0, totalItems - itemsPerPage);
+
+    const handleClick = () => {
+        router.push('/photography');
+    }
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) => (prevIndex >= maxIndex ? 0 : prevIndex + 1));
@@ -76,7 +83,7 @@ export default function Carousel({ images }: CarouselProps) {
 
     return (
         <>
-            <div className="relative w-full max-w-6xl mx-auto overflow-hidden group">
+            <div onClick={handleClick} className="relative w-full max-w-7xl mx-auto overflow-hidden group">
 
                 <button
                     onClick={prevSlide}
@@ -96,14 +103,14 @@ export default function Carousel({ images }: CarouselProps) {
                     onTouchEnd={onTouchEndHandler}
                 >
                     {images.map((img) => (
-                        <div key={img.id} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
-                            <div className="relative hover:scale-110 hover:rounded-lg transition-all duration-500 w-full h-64">
+                        <div key={img.id} className="w-full sm:w-1/2 lg:w-1/3 shrink-0 p-3">
+                            <div className="relative hover:scale-110 hover:rounded-lg transition-all duration-500 w-full h-96 sm:h-64">
                                 <Image
                                     src={img.url}
                                     alt={`${img.title}_${img.client}_${img.folder}` || `Carousel image ${img.id + 1}`}
                                     loading='eager'
                                     fill
-                                    className="object-cover rounded-lg shadow-md pointer-events-none"
+                                    className="object-cover rounded-xl shadow-md pointer-events-none"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 />
                             </div>
@@ -120,7 +127,7 @@ export default function Carousel({ images }: CarouselProps) {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
                 </button>
-            </div>
+            </div >
         </>
     );
 }
