@@ -3,12 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --tint5: #ffffff;
+  /* --tint5: #ffffff;
   --tint4: #f2f2f2;
   --tint3: #e6e6e6;
   --tint2: #d9d9d9;
   --tint1: #cccccc;
-  --mixpx: 0px;
+  --mixpx: 0px; */
 }
 
 @theme inline {
@@ -35,4 +35,23 @@ body {
 
   /* background: linear-gradient(90deg, var(--tint1) 0.000%, var(--tint1) 10%, var(--tint2) calc(10% + var(--mixpx)), var(--tint2) 20%, var(--tint3) calc(20% + var(--mixpx)), var(--tint3) 30%, var(--tint4) calc(30% + var(--mixpx)), var(--tint4) 40%, var(--tint5) calc(40% + var(--mixpx)), var(--tint5) 50%, var(--tint5) 60%, var(--tint4) calc(60% + var(--mixpx)), var(--tint4) 70%, var(--tint3) calc(70% + var(--mixpx)), var(--tint3) 80%, var(--tint2) calc(80% + var(--mixpx)), var(--tint2) 90%, var(--tint1) calc(90% + var(--mixpx)), var(--tint1) 100.000%); */
   /* cursor: none; */
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px rgba(255,0,0,0.6);
+  }
+  25% {
+    box-shadow: 0 0 12px 4px rgba(255,255,0,0.6);
+  }
+  50% {
+    box-shadow: 0 0 18px 6px rgba(0,255,0,0.6);
+  }
+  75% {
+    box-shadow: 0 0 12px 4px rgba(0,0,255,0.6);
+  }
+}
+
+.glow-hover:hover {
+  animation: glow-pulse 1s ease-in-out infinite;
 }
