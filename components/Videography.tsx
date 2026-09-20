@@ -46,7 +46,7 @@ export default function Videography() {
     if (loading) {
         return (
             <div className="max-w-7xl mx-auto space-y-8">
-                <h2 className={`${mont.className} text-2xl text-center tracking-widest`}>
+                <h2 className={`${mont.className} text-lg md:text-xl lg:text-2xl text-center tracking-widest`}>
                     Videography
                 </h2>
                 <p className="text-center text-gray-400">Loading videos...</p>
@@ -56,18 +56,18 @@ export default function Videography() {
 
     return (
         <div className="max-w-7xl mx-auto space-y-8">
-            <h2 className={`${mont.className} text-2xl text-center tracking-widest`}>
+            <h2 className={`${mont.className} text-lg md:text-xl lg:text-2xl text-center tracking-widest`}>
                 Videography
             </h2>
 
             {
                 videos.length > 6 ?
                     (
-                        <div onClick={handleVideoPage} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div onClick={(handleVideoPage)} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-3">
                             {previewVideos.map((video) => (
                                 <div
                                     key={video.id}
-                                    className="group relative aspect-video md:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+                                    className="group relative aspect-video sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
                                 >
                                     <Image
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
@@ -80,7 +80,7 @@ export default function Videography() {
 
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10"></div>
 
-                                    <div className="absolute inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 md:bg-black/20 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500">
+                                    <div className="absolute inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 sm:bg-black/20 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500">
                                         <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
                                             {video.client_name}
                                         </h3>
@@ -91,7 +91,7 @@ export default function Videography() {
                             ))}
                             <div
                                 key={videos[5].id}
-                                className="group relative aspect-video md:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+                                className="group relative aspect-video sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
                             >
                                 <Image
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
@@ -104,7 +104,7 @@ export default function Videography() {
 
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10"></div>
 
-                                <div className="absolute inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 md:bg-black/20 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500">
+                                <div className="absolute inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 sm:bg-black/20 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500">
                                     <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
                                         See {videos.length - previewVideos.length} more videos
                                     </h3>
@@ -115,11 +115,11 @@ export default function Videography() {
                         </div>
                     ) :
                     (
-                        <div onClick={handleVideoPage} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div onClick={handleVideoPage} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {videos.map((video) => (
                                 <div
                                     key={video.id}
-                                    className="group relative aspect-video md:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+                                    className="group relative aspect-video sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
                                 >
                                     <Image
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
@@ -132,7 +132,7 @@ export default function Videography() {
 
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10"></div>
 
-                                    <div className="absolute inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 md:bg-black/20 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500">
+                                    <div className="absolute inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 sm:bg-black/20 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500">
                                         <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
                                             {video.client_name}
                                         </h3>
