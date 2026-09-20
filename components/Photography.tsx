@@ -21,7 +21,7 @@ export default async function Photography() {
         url: photo.url
     }));
 
-    console.log(photos, error);
+    // console.log(photos, error);
     return (
         <div className="space-y-8 w-full">
             <h2 className={`${mont.className} text-2xl tracking-widest text-center`}>Photography</h2>

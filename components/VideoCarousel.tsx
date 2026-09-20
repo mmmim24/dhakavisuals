@@ -1,18 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createClient } from '@/lib/supabase/client';
+import { Trash, SquarePen } from 'lucide-react';
+import EditModal, { EditableVideo } from './EditModal';
+import { Toaster, toast } from 'react-hot-toast';
 
-interface Video {
-    embedUrl: string;
-    aspect: string;
-    title?: string;
-}
+type Video = EditableVideo;
 
 interface VideoCarouselProps {
     videos: Video[];
 }
 
 export default function VideoCarousel({ videos }: VideoCarouselProps) {
+
+    const supabase = createClient();
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [videoItems, setVideoItems] = useState(videos);
+    const [editingVideo, setEditingVideo] = useState<Video | null>(null);
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(1);
 
@@ -34,7 +40,58 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
         return () => window.removeEventListener('resize', updateItemsPerPage);
     }, []);
 
-    const totalItems = videos.length;
+    useEffect(() => {
+        async function isAdmin() {
+            const { data: { user }, error } = await supabase.auth.getUser();
+            if (error || !user) {
+                setIsAdmin(false);
+            }
+            else {
+                setIsAdmin(true);
+            }
+        }
+
+        isAdmin();
+    }, []);
+
+    const handleEdit = (id: number) => {
+        const video = videoItems.find((item) => item.id === id);
+        if (video) setEditingVideo(video);
+    }
+
+    const handleRemove = async (id: number) => {
+        if (!window.confirm('Remove this video?')) return;
+
+        const { error } = await supabase.from('videos').delete().eq('id', id);
+        if (error) {
+            toast.error(`Unable to remove video: ${error.message}`);
+            return;
+        }
+        else
+            toast.success('Video Deleted Successfully');
+
+        setVideoItems((currentVideos) => currentVideos.filter((video) => video.id !== id));
+        setCurrentIndex((currentIndex) => Math.min(currentIndex, Math.max(0, videoItems.length - 2)));
+    }
+
+    const handleSave = async (updatedVideo: Video) => {
+        const { error } = await supabase
+            .from('videos')
+            .update({
+                client_name: updatedVideo.clientName,
+                category: updatedVideo.category,
+                video_url: updatedVideo.embedUrl,
+                aspect_ratio: updatedVideo.aspect,
+            })
+            .eq('id', updatedVideo.id);
+
+        if (error) throw new Error(error.message);
+
+        setVideoItems((currentVideos) => currentVideos.map((video) => video.id === updatedVideo.id ? updatedVideo : video));
+        setEditingVideo(null);
+    }
+
+    const totalItems = videoItems.length;
     // Calculate max index to prevent exposing empty space at the end of the track
     const maxIndex = Math.max(0, totalItems - itemsPerPage);
 
@@ -53,7 +110,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
     return (
         // Outer flex container aligns buttons and the track side-by-side
         <div className="flex items-center justify-between w-full mx-auto gap-4 px-4">
-
+            <Toaster />
             {/* Previous Button - Placed entirely outside the iframe container */}
             <button
                 onClick={prevSlide}
@@ -71,20 +128,27 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${shiftPercentage}%)` }}
                 >
-                    {videos.map((video, index) => (
-                        <div key={index} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
+                    {videoItems.map((video) => (
+                        <div key={video.id} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
                             {/* Aspect-video maintains 16:9 ratio for iframes */}
                             <div
                                 style={{ aspectRatio: video.aspect }}
-                                className="relative w-full bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-200"
+                                className="group relative w-full bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-200"
                             >
                                 <iframe
                                     src={video.embedUrl}
-                                    title={video.title || `Video ${index + 1}`}
+                                    title={`${video.clientName} - ${video.category}`}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
                                     className="absolute top-0 left-0 w-full h-full border-none"
                                 ></iframe>
+                                {isAdmin &&
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10 invisible group-hover:visible flex flex-col justify-center items-center gap-4 md:gap-6 xl:gap-8 text-xl lg:text-2xl
+                                text-white">
+                                        <button type="button" onClick={() => handleEdit(video.id)} className='rounded-xl border border-white hover:bg-white hover:text-black cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Edit <SquarePen /></button>
+                                        <button type="button" onClick={() => handleRemove(video.id)} className='rounded-xl border border-white hover:bg-logo hover:text-white cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Remove <Trash /></button>
+                                    </div>
+                                }
                             </div>
                         </div>
                     ))}
@@ -102,6 +166,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
                 </svg>
             </button>
 
+            {editingVideo && <EditModal video={editingVideo} onClose={() => setEditingVideo(null)} onSave={handleSave} />}
         </div>
     );
 }

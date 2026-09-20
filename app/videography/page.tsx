@@ -13,10 +13,10 @@ export default async function Videography() {
     }
 
     const carouselVideos = (videos ?? []).map((video) => ({
+        id: video.id,
         clientName: video.client_name,
         category: video.category,
         embedUrl: video.video_url,
-        thumbnail: video.thumbnail_url,
         aspect: video.aspect_ratio
     }));
 
