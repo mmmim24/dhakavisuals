@@ -8,5 +8,4 @@ export const inter = Inter({
 export const mont = Montserrat({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400"],
 });
