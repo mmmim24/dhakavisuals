@@ -56,9 +56,9 @@ export default function Services() {
                             >
                                 <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-64 xl:h-72 flex flex-col items-start justify-start glow-hover">
                                     <div className="w-full flex justify-between items-center">
-                                        <p className={`${mont.className} text-xl font-medium tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
+                                        <div className={`${mont.className} text-xl font-medium tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
                                             {service.name}
-                                        </p>
+                                        </div>
                                         <div className="-ml-4 text-logo border-2 p-2 rounded-xl">
                                             {service.icon}
                                         </div>

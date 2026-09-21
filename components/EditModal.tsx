@@ -18,11 +18,6 @@ interface EditModalProps {
     onSave: (video: EditableVideo) => Promise<void>;
 }
 
-// function getVideoUrl(value: string) {
-//     const src = value.match(/src=['"]([^'"]+)['"]/i)?.[1];
-//     return src ?? value.trim();
-// }
-
 export default function EditModal({ video, onClose, onSave }: EditModalProps) {
     const [form, setForm] = useState(video);
     const [saving, setSaving] = useState(false);
