@@ -1,61 +1,61 @@
 import { createClient } from '@/lib/supabase/server';
-import Image from 'next/image';
+import PhotoFolder from '@/components/PhotoFolder';
+import { mont } from '../fonts';
 
 export default async function Photography() {
     const supabase = await createClient();
 
-    let { data: arcPhoto, error: arcPhotoError } = await supabase
+    const { data: arcThumbnail, error: arcThumbnailError } = await supabase
         .from('photos')
         .select('*')
         .eq('folder', 'architecture').limit(1);
 
-    let { data: docPhoto, error: docPhotoError } = await supabase
+    const { data: docThumbnail, error: docThumbnailError } = await supabase
         .from('photos')
         .select('*')
         .eq('folder', 'documentary').limit(1);
 
-    let { data: edPhoto, error: edPhotoError } = await supabase
+    const { data: edThumbnail, error: edThumbnailError } = await supabase
         .from('photos')
         .select('*')
         .eq('folder', 'edinst').limit(1);
 
-    let { data: eventPhoto, error: eventPhotoError } = await supabase
+    const { data: eventThumbnail, error: eventThumbnailError } = await supabase
         .from('photos')
         .select('*')
         .eq('folder', 'event').limit(1);
 
+    const Folders = [
+        {
+            name: "Architecture & Interior",
+            slug: "architecture",
+            thumbnail: arcThumbnail,
+            error: arcThumbnailError
+        },
+        {
+            name: "Documentary",
+            slug: "documentary",
+            thumbnail: docThumbnail,
+            error: docThumbnailError
+        },
+        {
+            name: "Educational Institutions",
+            slug: "edinst",
+            thumbnail: edThumbnail,
+            error: edThumbnailError
+        },
+        {
+            name: "Event",
+            slug: "event",
+            thumbnail: eventThumbnail,
+            error: eventThumbnailError
+        }
+    ]
+
     return (
-        <div className="min-h-screen flex flex-col items-center justify-evenly space-y-8">
-            <h2 className="text-2xl text-center tracking-widest">Photography</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
-                <div className='flex flex-col gap-8 items-center'>
-                    <h3>Architecture & Interior</h3>
-                    <div className='rounded-3xl shadow-2xl p-2 h-80 w-80'>
-                        {arcPhoto?.length ? <Image className='rounded-2xl w-full aspect-square object-cover' src={(arcPhoto ?? [])[0].url} alt='ss' width={200} height={200} /> : ""}
-                    </div>
-                </div>
-
-                <div className='flex flex-col gap-8 items-center'>
-                    <h3>Documentary</h3>
-                    <div className='rounded-3xl shadow-2xl p-2 h-80 w-80'>
-                        {docPhoto?.length ? <Image className='rounded-2xl w-full aspect-square object-cover' src={(docPhoto ?? [])[0].url} alt='ss' width={200} height={200} /> : ""}
-                    </div>
-                </div>
-
-                <div className='flex flex-col gap-8 items-center'>
-                    <h3>Educational Instituitions</h3>
-                    <div className='rounded-3xl shadow-2xl p-2 h-80 w-80'>
-                        {edPhoto?.length ? <Image className='rounded-2xl w-full aspect-square object-cover' src={(edPhoto ?? [])[0].url} alt='ss' width={200} height={200} /> : ""}
-                    </div>
-                </div>
-
-                <div className='flex flex-col gap-8 items-center'>
-                    <h3>Event</h3>
-                    <div className='rounded-3xl shadow-2xl p-2 h-80 w-80'>
-                        {eventPhoto?.length ? <Image className='rounded-2xl w-full aspect-square object-cover' src={(eventPhoto ?? [])[0].url} alt='ss' width={200} height={200} /> : ""}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div className="max-w-7xl mx-auto flex flex-col items-center justify-evenly gap-16 px-4 sm:px-6 lg:px-8 py-16 md:py-32 space-y-0">
+            <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>Photography</h2>
+            <PhotoFolder folders={Folders} />
+        </div >
     )
 }

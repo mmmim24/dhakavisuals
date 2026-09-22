@@ -83,7 +83,7 @@ export default function Carousel({ images }: CarouselProps) {
 
     return (
         <>
-            <div onClick={handleClick} className="relative w-full max-w-7xl mx-auto overflow-hidden group">
+            <div className="relative w-full max-w-7xl mx-auto overflow-hidden group">
 
                 <button
                     onClick={prevSlide}
@@ -96,8 +96,9 @@ export default function Carousel({ images }: CarouselProps) {
                 </button>
 
                 <div
-                    className="flex transition-transform duration-500 ease-in-out"
+                    className="flex transition-transform duration-500 ease-in-out cursor-pointer"
                     style={{ transform: `translateX(-${shiftPercentage}%)` }}
+                    onClick={handleClick}
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEndHandler}

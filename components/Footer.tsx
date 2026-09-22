@@ -56,7 +56,7 @@ export default function Footer() {
                         </div>
 
                         <p className="mt-3 text-xl tracking-tight text-center sm:text-left leading-relaxed">
-                            Premium Multimedia Production & Visual Documentation
+                            Premium Audio Video Production Company
                         </p>
                     </div>
 

@@ -1,5 +1,6 @@
 import VideoCarousel from '@/components/VideoCarousel';
 import { createClient } from '@/lib/supabase/server';
+import { mont } from '../fonts';
 
 export default async function Videography() {
     const supabase = await createClient();
@@ -23,7 +24,7 @@ export default async function Videography() {
     // console.log(videos, error);
     return (
         <div className="min-h-screen flex flex-col items-center justify-center space-y-8">
-            <h2 className="text-2xl text-center tracking-widest">Videography</h2>
+            <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>Videography</h2>
             <VideoCarousel videos={carouselVideos} />
         </div>
     )
