@@ -43,7 +43,7 @@ const services = [
 export default function Services() {
     return (
         <section id="services" className="min-h-100 w-full flex flex-col gap-16 items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
-            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold hover:bg-logo hover:text-white transition-colors duration-500 ease-in`}>
+            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-extrabold hover:bg-logo hover:text-white transition-colors duration-500 ease-in`}>
                 Services
             </h1>
             <div className="m-4 p-4 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg">
@@ -56,14 +56,14 @@ export default function Services() {
                             >
                                 <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-64 xl:h-72 flex flex-col items-start justify-start glow-hover">
                                     <div className="w-full flex justify-between items-center">
-                                        <div className={`${mont.className} text-xl font-medium tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
+                                        <div className={`${mont.className} text-xl font-semibold tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
                                             {service.name}
                                         </div>
                                         <div className="-ml-4 text-logo border-2 p-2 rounded-xl">
                                             {service.icon}
                                         </div>
                                     </div>
-                                    <ul className="mt-4 font-light marker:text-logo list-disc">
+                                    <ul className="mt-4 font-normal tracking-wide marker:text-logo list-disc">
                                         {service.list.map((l, index) => (
                                             <li key={index} className="text-sm xl:text-base">{l}</li>
                                         ))}

@@ -68,7 +68,7 @@ export default function Navbar() {
         <header className={`${mont.className} sticky top-0 z-49 w-full bg-transparent backdrop-blur-sm transition-colors duration-300`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
 
-                <Link href="/" className="text-xl font-bold tracking-tight text-zinc-900">
+                <Link href="/" className="text-xl tracking-tighter font-bold tracking-tight text-zinc-900">
                     <Image className='w-auto h-auto' width={100} height={100} src={"/logo_text.png"} loading="eager" alt="Dhaka Visuals"></Image>
                 </Link>
 
@@ -91,7 +91,7 @@ export default function Navbar() {
                                         handleNavClick(item.href);
                                         window.history.pushState(null, "", item.href);
                                     }}
-                                    className={`relative text-sm font-semibold transition-all duration-200  ${isActive
+                                    className={`relative font-semibold transition-all duration-200  ${isActive
                                         ? "text-logo "
                                         : "text-zinc-900 hover:text-logo"
                                         }`}
@@ -105,7 +105,7 @@ export default function Navbar() {
 
                 <Link
                     href="#contact"
-                    className="hidden w-32 md:flex justify-center rounded-full hover:bg-white bg-logo px-4 py-2 text-sm font-semibold hover:text-logo text-white transition border-2 hover:border-logo box-border"
+                    className="hidden w-32 md:flex justify-center rounded-full hover:bg-white bg-logo px-4 py-2 tracking-tight font-semibold hover:text-logo text-white transition border-2 hover:border-logo box-border"
                 >
                     Get Started
                 </Link>
@@ -152,7 +152,7 @@ export default function Navbar() {
                                 key={item.name}
                                 href={item.href}
                                 onClick={() => setIsOpen(false)}
-                                className="rounded-md px-3 py-2 text-base font-semibold text-logo hover:bg-logo hover:text-white"
+                                className="rounded-md px-3 py-2 text-base tracking-tighter font-semibold text-logo hover:bg-logo hover:text-white"
                             >
                                 {item.name}
                             </Link>
@@ -160,7 +160,7 @@ export default function Navbar() {
                         <Link
                             href="#contact"
                             onClick={() => setIsOpen(false)}
-                            className="mt-2 text-center rounded-md bg-logo px-4 py-2.5 text-base font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border"
+                            className="mt-2 text-center rounded-md bg-logo px-4 py-2.5 text-base tracking-tighter font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border"
                         >
                             Get Started
                         </Link>
