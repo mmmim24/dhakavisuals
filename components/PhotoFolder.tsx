@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export interface Photo {
-    id: number,
-    title: string,
+    id: number;
+    title: string;
+    client: string;
+    folder: string;
     url: string;
 }
 
