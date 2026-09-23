@@ -15,15 +15,15 @@ export default async function Videography() {
 
     const carouselVideos = (videos ?? []).map((video) => ({
         id: video.id,
-        clientName: video.client_name,
+        client_name: video.client_name,
         category: video.category,
-        embedUrl: video.video_url,
-        aspect: video.aspect_ratio
+        video_url: video.video_url,
+        image_url: video.image_url,
+        aspect_ratio: video.aspect_ratio
     }));
 
-    // console.log(videos, error);
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center space-y-8">
+        <div className="max-w-350 min-h-screen mx-auto flex flex-col items-center gap-16 py-16 md:py-32">
             <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>Videography</h2>
             <VideoCarousel videos={carouselVideos} />
         </div>
