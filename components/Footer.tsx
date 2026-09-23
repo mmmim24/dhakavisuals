@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { mont } from "@/app/fonts";
+import { Trash, } from "lucide-react";
 
 interface FooterLink {
     name: string;
-    href: string;
+    href?: string;
 }
 
 interface FooterSection {
@@ -14,29 +15,31 @@ interface FooterSection {
 
 const footerSections: FooterSection[] = [
     {
-        title: "Product",
-        links: [
-            { name: "Overview", href: "/overview" },
-            { name: "Features", href: "/features" },
-            { name: "Roadmap", href: "/roadmap" },
-            { name: "Pricing", href: "/pricing" },
-        ],
-    },
-    {
         title: "Company",
         links: [
-            { name: "About", href: "/about" },
-            { name: "Blog", href: "/blog" },
-            { name: "Careers", href: "/careers" },
-            { name: "Contact", href: "/contact" },
+            { name: "Clients", href: "/#clients" },
+            { name: "Services", href: "/#services" },
+            { name: "Portfolio", href: "/#portfolio" },
+            { name: "Testimonial", href: "/#testimonial" },
         ],
     },
     {
-        title: "Legal",
+        title: "Services",
         links: [
-            { name: "Privacy Policy", href: "/privacy" },
-            { name: "Terms of Service", href: "/terms" },
-            { name: "Cookie Settings", href: "/cookies" },
+            { name: "Content Creation" },
+            { name: "Event Coverage" },
+            { name: "Podcast Production" },
+            { name: "Video Production" },
+            { name: "Creative Photography" },
+            { name: "Post Production" },
+        ],
+    },
+    {
+        title: "Contact",
+        links: [
+            { name: "Facebook", href: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/" },
+            { name: "Instagram", href: "https://www.instagram.com/dhakavisuals.bd/" },
+            { name: "Linkedin", href: "https://www.linkedin.com/company/dhakavisuals/home/" },
         ],
     },
 ];
@@ -66,15 +69,22 @@ export default function Footer() {
                                 <h3 className="text-md font-semibold">
                                     {section.title}
                                 </h3>
-                                <ul className="mt-4 space-y-2.5">
+                                <ul className="mt-4 space-y-2.5 text-sm">
                                     {section.links.map((link) => (
                                         <li key={link.name}>
-                                            <Link
-                                                href={link.href}
-                                                className="text-sm transition-colors hover:text-zinc-900"
-                                            >
-                                                {link.name}
-                                            </Link>
+                                            {
+                                                link?.href ?
+                                                    <Link
+                                                        href={link.href}
+                                                        target="_blank"
+                                                        className=" transition-colors hover:text-logo"
+                                                    >
+                                                        {link.name}
+                                                    </Link> :
+                                                    <p>
+                                                        {link.name}
+                                                    </p>
+                                            }
                                         </li>
                                     ))}
                                 </ul>
@@ -83,21 +93,13 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-12 border-t border-zinc-200 pt-8 sm:flex sm:items-center sm:justify-between text-center sm:text-left">
-                    <p className="text-xs">
+                <div className="mt-12 border-t border-zinc-200 pt-8 sm:flex sm:items-center text-xs sm:justify-between text-center sm:text-left">
+                    <p >
                         &copy; {currentYear} Dhaka Visuals , BD. All rights reserved.
                     </p>
-                    <div className="mt-4 flex justify-center sm:justify-start space-x-6 sm:mt-0">
-                        <Link href="https://www.facebook.com/people/Dhaka-Visuals/61564926180665/" target="_blank" rel="noreferrer" className="text-xs hover:text-zinc-900">
-                            Facebook
-                        </Link>
-                        <Link href="https://www.instagram.com/dhakavisuals.bd/" target="_blank" rel="noreferrer" className="text-xs hover:text-zinc-900">
-                            Instagram
-                        </Link>
-                        <Link href="https://www.linkedin.com/company/dhakavisuals/home/" target="_blank" rel="noreferrer" className="text-xs hover:text-zinc-900">
-                            LinkedIn
-                        </Link>
-                    </div>
+                    <Link href="https://github.com/mmmim24/" target="_blank" >
+                        Developed by
+                    </Link>
                 </div>
             </div>
         </footer>
