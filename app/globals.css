@@ -30,7 +30,7 @@ body {
   background: var(--background);
   background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
                     linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
-  background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
+  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
   color: var(--foreground);
 
   /* background: linear-gradient(90deg, var(--tint1) 0.000%, var(--tint1) 10%, var(--tint2) calc(10% + var(--mixpx)), var(--tint2) 20%, var(--tint3) calc(20% + var(--mixpx)), var(--tint3) 30%, var(--tint4) calc(30% + var(--mixpx)), var(--tint4) 40%, var(--tint5) calc(40% + var(--mixpx)), var(--tint5) 50%, var(--tint5) 60%, var(--tint4) calc(60% + var(--mixpx)), var(--tint4) 70%, var(--tint3) calc(70% + var(--mixpx)), var(--tint3) 80%, var(--tint2) calc(80% + var(--mixpx)), var(--tint2) 90%, var(--tint1) calc(90% + var(--mixpx)), var(--tint1) 100.000%); */
@@ -54,4 +54,10 @@ body {
 
 .glow-hover:hover {
   animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.font-gradient{
+  background-image: linear-gradient(to right, #eb0303, #a70e0e);
+  background-clip: text;
+  color: transparent;
 }

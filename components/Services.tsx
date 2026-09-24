@@ -6,13 +6,13 @@ import {
     Camera,
     MonitorCog
 } from "lucide-react";
-import { mont } from "@/app/fonts";
+import { fraunces, mont } from "@/app/fonts";
 
 const services = [
     {
         name: <div><p>Content</p><p>Creation</p></div>,
         icon: <CircleFadingPlus />,
-        list: ["High-Converting Video Sales Letters", "Talking Heads", "Creator Content & Vlogs"]
+        list: ["High-Converting Video Sales Letters", "Talking Heads", "Creator Content & Vlogs", "Short Form Contents"]
     },
     {
         name: <div><p>Event</p><p>Coverage</p></div>,
@@ -27,7 +27,7 @@ const services = [
     {
         name: <div><p>Video</p><p>Production</p></div>,
         icon: <Video />,
-        list: ["Brand Commercials", "Product Campaigns", "Real Estate & Architecture", "Social Ads & Reels", "Documentaries"]
+        list: ["Brand Commercials", "Product Campaigns", "Real Estate & Architecture", "Social Ads & Reels", "Documentaries", "AI-Generated Video Content", "Drone & FPV"]
     },
     {
         name: <div><p>Creative</p><p>Photography</p></div>,
@@ -37,7 +37,7 @@ const services = [
     {
         name: <div><p>Post</p><p>Production</p></div>,
         icon: <MonitorCog />,
-        list: ["Advanced Editing", "Color Grading", "Motion Graphics & VFX", "Audio Engineering"]
+        list: ["Advanced Editing", "Color Grading", "Motion Graphics & VFX", "Audio Engineering", "AI-Enhanced Post-Production"]
     },
 ]
 export default function Services() {
@@ -54,9 +54,9 @@ export default function Services() {
                                 key={index}
                                 className="bg-transparent hover:scale-115 shadow-2xl rounded-3xl transition-all duration-500"
                             >
-                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-64 xl:h-72 flex flex-col items-start justify-start glow-hover">
+                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 xl:h-auto flex flex-col items-start justify-start glow-hover aspect-4/5">
                                     <div className="w-full flex justify-between items-center">
-                                        <div className={`${mont.className} text-xl font-semibold tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
+                                        <div className={`${fraunces.className} text-xl tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
                                             {service.name}
                                         </div>
                                         <div className="-ml-4 text-logo border-2 p-2 rounded-xl">

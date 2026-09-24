@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { mont } from "@/app/fonts";
-import { Trash, } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { ReactElement } from "react";
 
 interface FooterLink {
     name: string;
     href?: string;
+    icon?: ReactElement;
 }
 
 interface FooterSection {
@@ -37,9 +40,9 @@ const footerSections: FooterSection[] = [
     {
         title: "Contact",
         links: [
-            { name: "Facebook", href: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/" },
-            { name: "Instagram", href: "https://www.instagram.com/dhakavisuals.bd/" },
-            { name: "Linkedin", href: "https://www.linkedin.com/company/dhakavisuals/home/" },
+            { name: "Facebook", href: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/", icon: <FontAwesomeIcon icon={faFacebook} /> },
+            { name: "Instagram", href: "https://www.instagram.com/dhakavisuals.bd/", icon: <FontAwesomeIcon icon={faInstagram} /> },
+            { name: "Linkedin", href: "https://www.linkedin.com/company/dhakavisuals/home/", icon: <FontAwesomeIcon icon={faLinkedin} /> },
         ],
     },
 ];
@@ -77,8 +80,9 @@ export default function Footer() {
                                                     <Link
                                                         href={link.href}
                                                         target="_blank"
-                                                        className=" transition-colors hover:text-logo"
+                                                        className=" transition-colors hover:text-logo gap-22"
                                                     >
+                                                        {link.icon}
                                                         {link.name}
                                                     </Link> :
                                                     <p>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { mont } from "@/app/fonts";
+import { mont, fraunces } from "@/app/fonts";
 
 interface NavItem {
     name: string;
@@ -65,11 +65,11 @@ export default function Navbar() {
     };
 
     return (
-        <header className={`${mont.className} sticky top-0 z-49 w-full bg-transparent backdrop-blur-sm transition-colors duration-300`}>
+        <header className={`sticky top-0 z-49 w-full bg-transparent backdrop-blur-sm transition-colors duration-300`}>
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
 
                 <Link href="/" className="text-xl text-zinc-900">
-                    <Image className='w-auto h-auto' width={100} height={100} src={"/logo_text.png"} loading="eager" alt="Dhaka Visuals"></Image>
+                    <Image className='w-auto h-auto' width={75} height={75} src={"/logo_text.png"} loading="eager" alt="Dhaka Visuals"></Image>
                 </Link>
 
                 <div className="relative hidden md:flex items-center justify-center overflow-hidden rounded-3xl p-[1.5px]">
@@ -91,7 +91,7 @@ export default function Navbar() {
                                         handleNavClick(item.href);
                                         window.history.pushState(null, "", item.href);
                                     }}
-                                    className={`relative tracking-tight font-semibold transition-all duration-200  ${isActive
+                                    className={`relative tracking-tight  transition-all duration-200  ${isActive
                                         ? "text-logo "
                                         : "text-zinc-900 hover:text-logo"
                                         }`}
@@ -105,7 +105,7 @@ export default function Navbar() {
 
                 <Link
                     href="#contact"
-                    className="hidden w-32 md:flex justify-center rounded-full hover:bg-white bg-logo px-4 py-2 tracking-tight font-semibold hover:text-logo text-white transition border-2 hover:border-logo box-border"
+                    className="hidden w-32 md:flex justify-center rounded-full bg-white hover:bg-logo p-1.5 tracking-tight  text-logo hover:text-white transition border-2 hover:border-logo box-border"
                 >
                     Get Started
                 </Link>
