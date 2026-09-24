@@ -46,7 +46,7 @@ export default function Services() {
             <h1 className={`text-3xl md:text-4xl lg:text-5xl font-extrabold hover:bg-logo hover:text-white transition-colors duration-500 ease-in`}>
                 Services
             </h1>
-            <div className="m-4 p-4 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg *:nth-[3n]:hover:rotate-15 *:nth-[3n]:hover:-translate-x-45 *:nth-[3n]:hover:-translate-y-15 *:nth-[3n+1]:hover:-rotate-15 *:nth-[3n+1]:hover:translate-x-45 *:nth-[3n+1]:hover:-translate-y-15 *:nth-[3n+2]:hover:-translate-y-15">
+            <div className="p-0 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg *:nth-[3n]:hover:rotate-15 *:nth-[3n]:hover:-translate-x-45 *:nth-[3n]:hover:-translate-y-15 *:nth-[3n+1]:hover:-rotate-15 *:nth-[3n+1]:hover:translate-x-45 *:nth-[3n+1]:hover:-translate-y-15 *:nth-[3n+2]:hover:-translate-y-15">
                 {
                     services.map((service, index) => {
                         return (

@@ -10,7 +10,14 @@ export default async function Photography() {
         .order('created_at', { ascending: true });
 
     if (error) {
-        console.error('Failed to fetch photos:', error.message);
+        return (
+            <div className="space-y-8 max-w-7xl mx-auto py-4">
+                <h2 className={`${mont.className} font-semibold text-lg md:text-xl lg:text-2xl tracking-widest text-center`}>Photography</h2>
+                <p className='text-center mt-20 text-logo'>
+                    Error fetching the photos
+                </p>
+            </div>
+        )
     }
 
     const carouselPhotos = (photos ?? []).map((photo) => ({

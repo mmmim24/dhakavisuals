@@ -149,7 +149,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
                     style={{ transform: `translateX(-${shiftPercentage}%)` }}
                 >
                     {videoItems.map((video) => (
-                        <div key={video.id} className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2">
+                        <div key={video.id} className="w-full my-auto md:w-1/2 lg:w-1/3 shrink-0 p-2">
                             {/* Aspect-video maintains 16:9 ratio for iframes */}
                             <div
                                 style={{ aspectRatio: video.aspect_ratio }}
