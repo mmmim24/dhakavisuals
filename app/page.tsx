@@ -3,7 +3,7 @@ import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
-import Testimonial from "@/components/Testimonial";
+import Process from "@/components/Process";
 export default function Home() {
   return (
     <div className="min-h-100 max-w-full mx-auto py-8 flex flex-col justify-center">
@@ -11,7 +11,7 @@ export default function Home() {
       <Clients />
       <Services />
       <Portfolio />
-      <Testimonial />
+      <Process />
       <Contact />
     </div>
   );
