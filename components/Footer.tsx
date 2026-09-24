@@ -23,7 +23,7 @@ const footerSections: FooterSection[] = [
             { name: "Clients", href: "/#clients" },
             { name: "Services", href: "/#services" },
             { name: "Portfolio", href: "/#portfolio" },
-            { name: "Testimonial", href: "/#testimonial" },
+            { name: "Process", href: "/#process" },
         ],
     },
     {

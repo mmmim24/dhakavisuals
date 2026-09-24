@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { mont, fraunces } from "@/app/fonts";
 
 interface NavItem {
     name: string;
@@ -14,8 +13,7 @@ const navItems: NavItem[] = [
     { name: "Clients", href: "#clients" },
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Testimonial", href: "#testimonial" },
-    // { name: "Contact", href: "#contact" },
+    { name: "Process", href: "#process" },
 ];
 
 export default function Navbar() {
