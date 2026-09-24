@@ -42,9 +42,9 @@ const services = [
 ]
 export default function Services() {
     return (
-        <section id="services" className="min-h-100 w-full flex flex-col gap-16 items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
-            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-extrabold hover:bg-logo hover:text-white transition-colors duration-500 ease-in`}>
-                Services
+        <section id="services" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
+            <h1 className={`${fraunces.className} text-3xl md:text-4xl lg:text-5xl font-medium`}>
+                We Offer
             </h1>
             <div className="p-0 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg *:nth-[3n]:hover:rotate-15 *:nth-[3n]:hover:-translate-x-45 *:nth-[3n]:hover:-translate-y-15 *:nth-[3n+1]:hover:-rotate-15 *:nth-[3n+1]:hover:translate-x-45 *:nth-[3n+1]:hover:-translate-y-15 *:nth-[3n+2]:hover:-translate-y-15">
                 {
@@ -54,16 +54,16 @@ export default function Services() {
                                 key={index}
                                 className="bg-transparent hover:scale-115 shadow-2xl rounded-3xl transition-all duration-500"
                             >
-                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 xl:h-auto flex flex-col items-start justify-start glow-hover aspect-4/5">
+                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 xl:h-84 flex flex-col items-start justify-start glow-hover">
                                     <div className="w-full flex justify-between items-center">
-                                        <div className={`${fraunces.className} text-xl tracking-widest sm:text-base md:text-lg xl:text-2xl -ml-4`}>
+                                        <div className={`${fraunces.className} text-xl tracking-wider sm:text-base md:text-xl xl:text-2xl -ml-4`}>
                                             {service.name}
                                         </div>
                                         <div className="-ml-4 text-logo border-2 p-2 rounded-xl">
                                             {service.icon}
                                         </div>
                                     </div>
-                                    <ul className="mt-4 font-normal tracking-wide marker:text-logo list-disc">
+                                    <ul className="mt-4 font-light marker:text-logo list-disc">
                                         {service.list.map((l, index) => (
                                             <li key={index} className="text-sm xl:text-base">{l}</li>
                                         ))}

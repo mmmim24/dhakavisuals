@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { mont } from "@/app/fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { ReactElement } from "react";
@@ -51,7 +50,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className={`${mont.className}`}>
+        <footer className={`font-light`}>
             <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
 
