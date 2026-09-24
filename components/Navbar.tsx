@@ -105,7 +105,7 @@ export default function Navbar() {
 
                 <Link
                     href="#contact"
-                    className="hidden w-32 md:flex justify-center rounded-full bg-white hover:bg-logo p-1.5 tracking-tight  text-logo hover:text-white transition border-2 hover:border-logo box-border"
+                    className="hidden w-32 md:flex justify-center rounded-full bg-white hover:bg-logo px-4 py-2 tracking-tight  text-logo hover:text-white transition border-2 hover:border-logo box-border"
                 >
                     Get Started
                 </Link>
