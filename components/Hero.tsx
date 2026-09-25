@@ -21,7 +21,7 @@ export default function Hero() {
             </div>
 
             <div className="visible md:w-1/3">
-                <Link className="fixed z-20 md:absolute bottom-6 md:bottom-47 xl:bottom-35 right-2 md:right-2 h-12 w-12 mx-4 md:w-32 flex justify-center md:justify-between gap-1 rounded-full hover:bg-white md:hover:bg-[#24CC63] bg-[#24CC63] md:bg-white hover:border-white font-medium text-white md:text-[#24CC63] hover:text-[#24CC63] md:hover:text-white p-2 tracking-tight   transition border-2 box-border items-center" target="_blank" href="https://wa.me/+8801534996679">
+                <Link className="fixed z-25 md:absolute bottom-6 md:bottom-47 xl:bottom-35 right-2 md:right-2 h-12 w-12 mx-4 md:w-32 flex justify-center md:justify-between gap-1 rounded-full hover:bg-white md:hover:bg-[#24CC63] bg-[#24CC63] md:bg-white hover:border-white font-medium text-white md:text-[#24CC63] hover:text-[#24CC63] md:hover:text-white p-2 tracking-tight   transition border-2 box-border items-center" target="_blank" href="https://wa.me/+8801534996679">
                     <span className="ml-2 hidden md:inline">
                         Chat on
                     </span>
