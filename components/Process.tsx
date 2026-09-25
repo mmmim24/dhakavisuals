@@ -6,6 +6,8 @@ import {
     ShieldCheck,
     PackageCheck
 } from "lucide-react"
+import Marquee from "react-fast-marquee"
+
 const process = {
     "title": "The Optimized Production Workflow",
     "steps": [
@@ -54,27 +56,31 @@ export default function Process() {
 
                             <p className="text-2xl">Complete Audio-Visual Solution</p>
 
-                            <p>Dhaka Visuals is a creative audio-visual production agency in Dhaka helping brands, organizations, institutions, companies, and creators scale through cinematic commercial videos, high-converting content, and professional photography. We partner with a select group of projects each season for maximum creative focus.</p>
+                            <p className="italic tracking-tight">Dhaka Visuals is a creative audio-visual production agency in Dhaka helping brands, organizations, institutions, companies, and creators scale through cinematic commercial videos, high-converting content, and professional photography. We partner with a select group of projects each season for maximum creative focus.</p>
 
-                            <p className="italic text-2xl">Transparent communication, zero creative friction, and on-time delivery guaranteed.</p>
-
-                        </div>
-
-                        <div className="grid grid-cols-3 gap-4 *:h-60">
-
-                            <div className="bg-red-500/20"></div>
-
-                            <div className="bg-green-500/20"></div>
-
-                            <div className="bg-blue-500/20"></div>
+                            <p className="text-xl">Transparent communication, zero creative friction, and on-time delivery guaranteed.</p>
 
                         </div>
+
+                        <Marquee autoFill={true} pauseOnHover={true} speed={100}>
+
+                            <div className="flex gap-4 *:h-65 *:w-65">
+
+                                <div className="flex-1 bg-red-500/20"></div>
+
+                                <div className="flex-1 bg-green-500/20"></div>
+
+                                <div className="flex-1 bg-blue-500/20 mr-4"></div>
+
+                            </div>
+
+                        </Marquee>
 
                     </div>
 
                     <div className="space-y-16">
 
-                        <h3 className={`${fraunces.className} font-normal text-3xl`}>{process.title}</h3>
+                        <h3 className={`${fraunces.className} text-left tracking-tight font-normal text-3xl`}>{process.title}</h3>
 
                         <ul className="space-y-8">
                             {
@@ -86,7 +92,7 @@ export default function Process() {
                                                 <span className="inline text-logo">{s.icon}</span>{s.title}
                                             </li>
 
-                                            <p>
+                                            <p className="text-justify">
                                                 {s.description}
                                             </p>
 
