@@ -12,7 +12,7 @@ import TCursor from "@/components/TCursor";
 
 export const metadata: Metadata = {
   title: "Dhaka Visuals",
-  description: "Premium Audio Visual Production Company",
+  description: "Complete Audio Visual Solution",
 };
 
 export default function RootLayout({

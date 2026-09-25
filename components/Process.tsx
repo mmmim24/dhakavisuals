@@ -42,11 +42,11 @@ export default function Process() {
     return (
         <section id="process" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8 ">
 
-            <h3 className={`${fraunces.className} text-3xl md:text-4xl lg:text-5xl font-medium`}>
+            <h3 className={`${fraunces.className} text-3xl md:text-4xl xl:text-5xl font-medium`}>
                 How We Will Work
             </h3>
 
-            <div className="w-full max-w-7xl bg-white/80 rounded-3xl p-3 shadow-2xl">
+            <div className="w-full max-w-7xl bg-transparent rounded-3xl p-3 shadow-2xl">
 
                 <div className="flex flex-col lg:flex-row *:lg:w-1/2 gap-20 text-justify font-light bg-white shadow-2xl rounded-2xl p-10">
 

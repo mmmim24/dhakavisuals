@@ -45,7 +45,7 @@ export default function Videography() {
     if (loading) {
         return (
             <div className="max-w-7xl mx-auto space-y-8">
-                <h2 className={`font-light text-lg md:text-xl lg:text-2xl text-center tracking-widest`}>
+                <h2 className={`font-light text-lg md:text-xl xl:text-2xl text-center tracking-widest`}>
                     Videography
                 </h2>
                 <p className="text-center text-gray-400">Loading videos...</p>
@@ -55,7 +55,7 @@ export default function Videography() {
 
     return (
         <div className="max-w-7xl mx-auto space-y-8">
-            <h2 className={`font-light text-lg md:text-xl lg:text-2xl text-center tracking-widest`}>
+            <h2 className={`font-light text-lg md:text-xl xl:text-2xl text-center tracking-widest`}>
                 Videography
             </h2>
 

@@ -43,7 +43,7 @@ const services = [
 export default function Services() {
     return (
         <section id="services" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
-            <h1 className={`${fraunces.className} text-3xl md:text-4xl lg:text-5xl font-medium`}>
+            <h1 className={`${fraunces.className} text-3xl md:text-4xl xl:text-5xl font-medium`}>
                 We Offer
             </h1>
             <div className="p-0 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg *:nth-[3n]:hover:rotate-15 *:nth-[3n]:hover:-translate-x-45 *:nth-[3n]:hover:-translate-y-15 *:nth-[3n+1]:hover:-rotate-15 *:nth-[3n+1]:hover:translate-x-45 *:nth-[3n+1]:hover:-translate-y-15 *:nth-[3n+2]:hover:-translate-y-15">
