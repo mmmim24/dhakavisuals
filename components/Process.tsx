@@ -48,17 +48,17 @@ export default function Process() {
 
             <div className="w-full max-w-7xl bg-transparent rounded-3xl p-3 shadow-2xl">
 
-                <div className="flex flex-col lg:flex-row *:lg:w-1/2 gap-20 text-justify font-light bg-white shadow-2xl rounded-2xl p-10">
+                <div className="flex flex-col lg:flex-row *:lg:w-1/2 gap-10 xl:gap-20 text-justify font-light bg-white shadow-2xl rounded-2xl p-4 sm:p-6 lg:p-10">
 
-                    <div className="space-y-16">
+                    <div className="space-y-6 lg:space-y-12 xl:space-y-16">
 
-                        <div className="space-y-16">
+                        <div className="space-y-6 lg:space-y-12 xl:space-y-16">
 
-                            <p className="text-2xl">Complete Audio-Visual Solution</p>
+                            <p className="text-lg sm:text-xl xl:text-2xl">Complete Audio-Visual Solution</p>
 
-                            <p className="italic tracking-tight">Dhaka Visuals is a creative audio-visual production agency in Dhaka helping brands, organizations, institutions, companies, and creators scale through cinematic commercial videos, high-converting content, and professional photography. We partner with a select group of projects each season for maximum creative focus.</p>
+                            <p className="italic text-sm xl:text-base tracking-tight">Dhaka Visuals is a creative audio-visual production agency in Dhaka helping brands, organizations, institutions, companies, and creators scale through cinematic commercial videos, high-converting content, and professional photography. We partner with a select group of projects each season for maximum creative focus.</p>
 
-                            <p className="text-xl">Transparent communication, zero creative friction, and on-time delivery guaranteed.</p>
+                            <p className="text-base sm:text-lg xl:text-xl">Transparent communication, zero creative friction, and on-time delivery guaranteed.</p>
 
                         </div>
 
@@ -78,22 +78,22 @@ export default function Process() {
 
                     </div>
 
-                    <div className="space-y-16">
+                    <div className="space-y-6 lg:space-y-12 xl:space-y-16">
 
-                        <h3 className={`${fraunces.className} text-left tracking-tight font-normal text-3xl`}>{process.title}</h3>
+                        <h3 className={`${fraunces.className} text-left tracking-tight font-normal text-xl sm:text-2xl xl:text-3xl`}>{process.title}</h3>
 
-                        <ul className="space-y-8">
+                        <ul className="space-y-6 xl:space-y-8">
                             {
-                                process.steps.map((s, idx) => {
+                                process.steps.map((step, idx) => {
                                     return (
-                                        <div key={idx} className="space-y-4">
+                                        <div key={idx} className="space-y-2 xl:space-y-3">
 
-                                            <li className="font-normal flex gap-4">
-                                                <span className="inline text-logo">{s.icon}</span>{s.title}
+                                            <li className="font-normal text-sm xl:text-base flex gap-2 xl:gap-3">
+                                                <span className="inline text-logo">{step.icon}</span>{step.title}
                                             </li>
 
-                                            <p className="text-justify">
-                                                {s.description}
+                                            <p className="text-sm xl:text-base">
+                                                {step.description}
                                             </p>
 
                                         </div>
