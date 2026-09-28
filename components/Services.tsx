@@ -1,3 +1,5 @@
+"use client"
+import React from "react";
 import {
     CircleFadingPlus,
     UserRoundGroup,
@@ -7,6 +9,24 @@ import {
     MonitorCog
 } from "lucide-react";
 import { fraunces, mont } from "@/app/fonts";
+
+const TILT_PAIRS: [number, number][] = [
+    [8, -2],
+    [-7, 3],
+    [3, 9],
+    [-2, 8],
+    [3, -7],
+    [9, 3],
+];
+
+const cardClasses = [
+    "service-card relative bg-transparent shadow-2xl rounded-3xl lg:aspect-4/5",
+    "transition-[rotate,scale,translate] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+    "hover:scale-115 hover:z-20 lg:hover:rotate-0!",
+    "lg:nth-[2n+1]:rotate-(--tilt-odd) lg:nth-[2n]:rotate-(--tilt-even)",
+    "lg:not-nth-[3n+1]:[.service-card:hover+&]:translate-x-15",
+    "lg:not-nth-[3n]:[&:has(+.service-card:hover)]:-translate-x-15",
+].join(" ");
 
 const services = [
     {
@@ -41,20 +61,35 @@ const services = [
     },
 ]
 export default function Services() {
+
+    const [pairIndex, setPairIndex] = React.useState(0);
+    const [odd, even] = TILT_PAIRS[pairIndex];
+
+    const gridStyle = {
+        "--tilt-odd": `${odd}deg`,
+        "--tilt-even": `${even}deg`,
+    } as React.CSSProperties;
+
     return (
         <section id="services" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
             <h1 className={`${fraunces.className} text-3xl md:text-4xl xl:text-5xl font-medium`}>
                 We Offer
             </h1>
-            <div className="p-0 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg *:nth-[3n]:hover:rotate-15 *:nth-[3n]:hover:-translate-x-45 *:nth-[3n]:hover:-translate-y-15 *:nth-[3n+1]:hover:-rotate-15 *:nth-[3n+1]:hover:translate-x-45 *:nth-[3n+1]:hover:-translate-y-15 *:nth-[3n+2]:hover:-translate-y-15">
+            <div
+                style={gridStyle}
+                className="p-0 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-0 text-lg"
+            >
                 {
                     services.map((service, index) => {
                         return (
                             <div
                                 key={index}
-                                className="bg-transparent hover:scale-115 shadow-2xl rounded-3xl transition-all duration-500"
+                                onMouseEnter={() =>
+                                    setPairIndex((i) => (i + 1) % TILT_PAIRS.length)
+                                }
+                                className={cardClasses}
                             >
-                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 xl:h-84 flex flex-col items-start justify-start glow-hover">
+                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 lg:h-auto lg:aspect-4/5 flex flex-col items-start justify-start glow-hover">
                                     <div className="w-full flex justify-between items-center">
                                         <div className={`${fraunces.className} text-xl tracking-wider sm:text-base md:text-xl xl:text-2xl -ml-4`}>
                                             {service.name}
