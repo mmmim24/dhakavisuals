@@ -42,7 +42,7 @@ export default function Process() {
     return (
         <section id="process" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8 ">
 
-            <h3 className={`${fraunces.className} text-3xl md:text-4xl xl:text-5xl font-medium`}>
+            <h3 className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
                 How We Will Work
             </h3>
 
@@ -80,7 +80,7 @@ export default function Process() {
 
                     <div className="space-y-6 lg:space-y-12 xl:space-y-16">
 
-                        <h3 className={`${fraunces.className} text-left tracking-tight font-normal text-xl sm:text-2xl xl:text-3xl`}>{process.title}</h3>
+                        <h3 className={`text-left tracking-tight font-medium text-xl sm:text-2xl xl:text-3xl`}>{process.title}</h3>
 
                         <ul className="space-y-6 xl:space-y-8">
                             {

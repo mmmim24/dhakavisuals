@@ -72,9 +72,9 @@ export default function Services() {
 
     return (
         <section id="services" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
-            <h1 className={`${fraunces.className} text-3xl md:text-4xl xl:text-5xl font-medium`}>
+            <h3 className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
                 We Offer
-            </h1>
+            </h3>
             <div
                 style={gridStyle}
                 className="p-0 w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-0 text-lg"
@@ -89,9 +89,9 @@ export default function Services() {
                                 }
                                 className={cardClasses}
                             >
-                                <div className="bg-white m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 lg:h-auto lg:aspect-4/5 flex flex-col items-start justify-start glow-hover">
+                                <div className="bg-white lg:bg-[linear-gradient(135deg,white,rgba(235,235,235),white,rgba(235,235,235),white)] m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80 lg:h-auto lg:aspect-4/5 flex flex-col items-start justify-start">
                                     <div className="w-full flex justify-between items-center">
-                                        <div className={`${fraunces.className} text-xl tracking-wider sm:text-base md:text-xl xl:text-2xl -ml-4`}>
+                                        <div className={`text-xl font-medium tracking-tighter sm:text-base md:text-xl xl:text-2xl -ml-4`}>
                                             {service.name}
                                         </div>
                                         <div className="-ml-4 text-logo border-2 p-2 rounded-xl">
