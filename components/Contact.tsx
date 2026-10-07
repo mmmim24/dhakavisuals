@@ -46,9 +46,11 @@ export default function Contact() {
         Let's Collaborate
       </h1> */}
       <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-1/3 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:items-center *:gap-4">
+        <div className="lg:w-1/3 flex flex-col gap-4 justify-between">
           {contacts.map((contact) => (
-            <div key={contact.name} className="text-xs md:text-sm">
+            <div
+              key={contact.name}
+              className="bg-white rounded-xl p-4 flex items-center gap-4 text-xs md:text-sm">
               <div className="bg-logo rounded-full text-white p-3">
                 {contact.icon}
               </div>
