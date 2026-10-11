@@ -11,7 +11,7 @@ export default async function Videography() {
 
     if (error) {
         <div className="max-w-350 min-h-screen mx-auto flex flex-col items-center gap-16 py-16 md:py-32">
-            <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>Videography</h2>
+            <h2 className={`font-semibold text-2xl text-center tracking-widest`}>Video Production</h2>
             <p className='text-center mt-20 text-logo'>
                 Error fetching the videos
             </p>
@@ -29,7 +29,7 @@ export default async function Videography() {
 
     return (
         <div className="max-w-350 min-h-screen mx-auto flex flex-col items-center gap-16 py-16 md:py-32">
-            <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>Videography</h2>
+            <h2 className={`font-semibold text-2xl text-center tracking-widest`}>Video Production</h2>
             <VideoCarousel videos={carouselVideos} />
         </div>
     )

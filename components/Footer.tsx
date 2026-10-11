@@ -40,26 +40,26 @@ const footerSections: FooterSection[] = [
       { name: "Post Production" },
     ],
   },
-  {
-    title: "Contact",
-    links: [
-      {
-        name: "Facebook",
-        href: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/",
-        icon: <FontAwesomeIcon icon={faFacebook} />,
-      },
-      {
-        name: "Instagram",
-        href: "https://www.instagram.com/dhakavisuals.bd/",
-        icon: <FontAwesomeIcon icon={faInstagram} />,
-      },
-      {
-        name: "Linkedin",
-        href: "https://www.linkedin.com/company/dhakavisuals/home/",
-        icon: <FontAwesomeIcon icon={faLinkedin} />,
-      },
-    ],
-  },
+  // {
+  //   title: "Contact",
+  //   links: [
+  //     {
+  //       name: "Facebook",
+  //       href: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/",
+  //       icon: <FontAwesomeIcon icon={faFacebook} />,
+  //     },
+  //     {
+  //       name: "Instagram",
+  //       href: "https://www.instagram.com/dhakavisuals.bd/",
+  //       icon: <FontAwesomeIcon icon={faInstagram} />,
+  //     },
+  //     {
+  //       name: "Linkedin",
+  //       href: "https://www.linkedin.com/company/dhakavisuals/home/",
+  //       icon: <FontAwesomeIcon icon={faLinkedin} />,
+  //     },
+  //   ],
+  // },
 ];
 
 export default function Footer() {
@@ -68,24 +68,24 @@ export default function Footer() {
   return (
     <footer className={`font-light`}>
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-10">
+          <div className="md:col-span-4">
             <div className="flex justify-center md:justify-start items-center md:items-start">
               <Image
                 className="w-auto h-auto"
-                width={200}
-                height={200}
+                width={75}
+                height={75}
                 src={"/logo_text.png"}
                 loading="eager"
                 alt="Dhaka Visuals"></Image>
             </div>
 
             <p className="mt-3 text-xl tracking-tight text-center md:text-left leading-relaxed">
-              Complete Audio Visual Solution
+              Purpose, Made Visible
             </p>
           </div>
 
-          <div className="grid grid-cols-1 justify-center sm:justify-start items-center sm:items-start text-center md:text-left gap-8 md:grid-cols-3 md:col-span-3">
+          <div className="grid grid-cols-1 justify-center sm:justify-start items-center sm:items-start text-center md:text-left gap-8 md:grid-cols-2 md:col-span-6">
             {footerSections.map((section) => (
               <div key={section.title}>
                 <h3 className="text-md font-semibold">{section.title}</h3>
@@ -112,7 +112,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-zinc-200 pt-8 sm:flex sm:items-center text-xs sm:justify-between text-center sm:text-left">
-          <p>&copy; {currentYear} Dhaka Visuals , BD. All rights reserved.</p>
+          <p>&copy; {currentYear} Dhaka Visuals. All rights reserved.</p>
           <Link href="https://github.com/mmmim24/" target="_blank">
             Developed by
           </Link>

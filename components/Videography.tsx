@@ -56,7 +56,7 @@ export default function Videography() {
     return (
         <div className="max-w-7xl mx-auto space-y-8">
             <h2 className={`font-light text-lg md:text-xl xl:text-2xl text-center tracking-widest`}>
-                Videography
+                Video Production
             </h2>
 
             {

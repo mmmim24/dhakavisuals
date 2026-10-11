@@ -61,3 +61,7 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+.bg-gradient{
+  background-image: linear-gradient(to right, #eb0303, #a70e0e);
+}

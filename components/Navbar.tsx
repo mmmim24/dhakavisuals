@@ -79,7 +79,7 @@ export default function Navbar() {
             alt="Dhaka Visuals"></Image>
         </Link>
 
-        <div className="relative hidden md:flex items-center justify-center overflow-hidden rounded-3xl p-[1.5px]">
+        <div className="relative hidden md:flex items-center justify-center overflow-hidden rounded-3xl hover:scale-110 transition-all duration-500 p-[1.5px]">
           <div className="absolute -inset-full animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_90%,transparent_90%,#e32332_50%,#e32332_50%)]" />
           <nav className="hidden md:flex bg-white z-1 rounded-3xl items-center px-4 py-2 space-x-8">
             {navItems.map((item) => {
@@ -95,9 +95,8 @@ export default function Navbar() {
                     handleNavClick(item.href);
                     window.history.pushState(null, "", item.href);
                   }}
-                  className={`relative tracking-tight  transition-all duration-200  ${
-                    isActive ? "text-logo " : "text-zinc-900 hover:text-logo"
-                  }`}>
+                  className={`relative tracking-tight transition-all duration-500  ${isActive ? "text-logo scale-120 -translate-y-1" : "text-zinc-900 hover:text-logo hover:-translate-y-1"
+                    }`}>
                   {item.name}
                 </Link>
               );

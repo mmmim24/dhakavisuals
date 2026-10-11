@@ -54,7 +54,7 @@ export default async function Photography() {
 
     return (
         <div className="max-w-7xl min-h-screen mx-auto flex flex-col items-center gap-16 py-16 md:py-32">
-            <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>Photography</h2>
+            <h2 className={`font-semibold text-2xl text-center tracking-widest`}>Gallery</h2>
             <PhotoFolder folders={Folders} />
         </div >
     )

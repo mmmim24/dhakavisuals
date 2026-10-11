@@ -1,5 +1,5 @@
 import { fraunces } from "@/app/fonts";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,
@@ -9,29 +9,35 @@ import {
 import Link from "next/link";
 const contacts = [
   {
-    icon: <Mail />,
+    icon: <Mail size={24} />,
     name: "Email",
     value: "dhakavisuals.bd@gmail.com",
+    // ref: <Link href="mailto:dhakavisuals.bd@gmail.com">dhakavisuals.bd@gmail.com</Link>,
   },
   {
-    icon: <Phone />,
+    icon: <Phone size={24} />,
     name: "Phone",
-    value: "+880 15349 96679",
+    value: "+880 1329 831249",
   },
+  {
+    icon: <MapPin size={24} />,
+    name: "Location",
+    value: "29 / A, Purana Paltan, Dhaka - 1000"
+  }
 ];
 const socials = [
   {
-    icon: <FontAwesomeIcon icon={faFacebook} />,
+    icon: <FontAwesomeIcon icon={faFacebook} size="3x" />,
     name: "Facebook",
     value: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/",
   },
   {
-    icon: <FontAwesomeIcon icon={faInstagram} />,
+    icon: <FontAwesomeIcon icon={faInstagram} size="3x" />,
     name: "Instagram",
     value: "https://www.instagram.com/dhakavisuals.bd/",
   },
   {
-    icon: <FontAwesomeIcon icon={faLinkedin} />,
+    icon: <FontAwesomeIcon icon={faLinkedin} size="3x" />,
     name: "Linkedin",
     value: "https://www.linkedin.com/company/dhakavisuals/home/",
   },
@@ -41,17 +47,25 @@ export default function Contact() {
     <section
       id="contact"
       className="min-h-100 bg-zinc-500/10 w-full flex flex-col gap-16 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
-      {/* <h1
-        className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
-        Let's Collaborate
-      </h1> */}
-      <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-1/3 flex flex-col gap-4 justify-between">
+      <div className="text-center flex flex-col gap-4">
+        <h1
+          className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter mb-5 lg:mb-10`}>
+          Get in Touch
+        </h1>
+        <h3 className="text-xl md:text-2xl xl:text-3xl tracking-tight">
+          Have a Story in Mind?
+        </h3>
+        <h5 className="font-light md:text-lg xl:text-xl tracking-tight">
+          Every good project starts with a conversation. Tell us what you're imagining, and let's bring it to the screen together.
+        </h5>
+      </div>
+      <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row gap-8">
+        <div className="md:w-1/2 flex flex-col gap-4 justify-between">
           {contacts.map((contact) => (
             <div
               key={contact.name}
-              className="bg-white rounded-xl p-4 flex items-center gap-4 text-xs md:text-sm">
-              <div className="bg-logo rounded-full text-white p-3">
+              className="h-20 bg-white rounded-xl p-4 flex items-center gap-4 text-xs md:text-sm">
+              <div className="bg-gradient rounded-full text-white p-2">
                 {contact.icon}
               </div>
               <div>
@@ -62,21 +76,21 @@ export default function Contact() {
           ))}
         </div>
 
-        <h1
+        {/* <h1
           className={`lg:w-1/3 self-center text-3xl text-center md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
           Let's Collaborate
-        </h1>
+        </h1> */}
 
         <div
-          className="lg:w-1/3 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:items-center *:gap-2 *:nth-[1]:hover:text-blue-600 *:nth-[2]:hover:text-red-400 *:nth-[3]:hover:text-blue-600
+          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:flex-row-reverse *:md:flex-row *:items-center *:gap-2 *:nth-[1]:text-blue-500 *:nth-[2]:text-red-600 *:nth-[3]:text-blue-600
         *:duration-500 *:transition-all">
           {socials.map((social) => (
             <Link
               key={social.name}
-              className="text-xs flex justify-center lg:justify-start md:text-sm"
+              className="text-xs h-20 flex justify-center md:justify-end md:text-sm"
               href={social.value}>
-              <div>{social.icon}</div>
               <div>{social.name}</div>
+              <div>{social.icon}</div>
             </Link>
           ))}
         </div>
