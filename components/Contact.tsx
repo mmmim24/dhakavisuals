@@ -9,18 +9,18 @@ import {
 import Link from "next/link";
 const contacts = [
   {
-    icon: <Mail />,
+    icon: <Mail size={24} />,
     name: "Email",
     value: "dhakavisuals.bd@gmail.com",
     // ref: <Link href="mailto:dhakavisuals.bd@gmail.com">dhakavisuals.bd@gmail.com</Link>,
   },
   {
-    icon: <Phone />,
+    icon: <Phone size={24} />,
     name: "Phone",
     value: "+880 1329 831249",
   },
   {
-    icon: <MapPin />,
+    icon: <MapPin size={24} />,
     name: "Location",
     value: "29 / A, Purana Paltan, Dhaka - 1000"
   }
@@ -65,7 +65,7 @@ export default function Contact() {
             <div
               key={contact.name}
               className="h-20 bg-white rounded-xl p-4 flex items-center gap-4 text-xs md:text-sm">
-              <div className="bg-logo rounded-full text-white p-3">
+              <div className="bg-gradient rounded-full text-white p-2">
                 {contact.icon}
               </div>
               <div>
@@ -82,7 +82,7 @@ export default function Contact() {
         </h1> */}
 
         <div
-          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:flex-row-reverse *:md:flex-row *:items-center *:gap-2 *:nth-[1]:text-blue-600 *:nth-[2]:text-red-400 *:nth-[3]:text-blue-600
+          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:flex-row-reverse *:md:flex-row *:items-center *:gap-2 *:nth-[1]:text-blue-500 *:nth-[2]:text-red-600 *:nth-[3]:text-blue-600
         *:duration-500 *:transition-all">
           {socials.map((social) => (
             <Link

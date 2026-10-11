@@ -14,27 +14,27 @@ const process = {
         {
             "title": "Strategy & Concept Development",
             "description": "We align on your core business goals, brainstorm high-converting creative hooks, and lock in a transparent timeline schedule.",
-            "icon": <TicTacToe />
+            "icon": <TicTacToe size={20} />
         },
         {
             "title": "Pre-Production & Blueprinting",
             "description": "We translate the concept into actionable blueprints: detailed storyboards, script fine-tuning, location scouting, and talent casting.",
-            "icon": <FileBox />
+            "icon": <FileBox size={20} />
         },
         {
             "title": "Execution & Capture",
             "description": "Our crew brings the vision to life on set using professional cinema rigs, FPV drones, and expert lighting setups.",
-            "icon": <Clapperboard />
+            "icon": <Clapperboard size={20} />
         },
         {
             "title": "Post-Production & Creative Quality Control",
             "description": "We handle the editing and effects, backed by structured feedback rounds to guarantee the final output hits your exact brand standard.",
-            "icon": <ShieldCheck />
+            "icon": <ShieldCheck size={20} />
         },
         {
             "title": "Optimization & Multi-Format Delivery",
             "description": "We package your final assets formatted precisely for your website, ad platforms, or social channels.",
-            "icon": <PackageCheck />
+            "icon": <PackageCheck size={20} />
         }
     ]
 }
@@ -53,9 +53,9 @@ export default function Process() {
 
             <div className="w-full max-w-7xl bg-transparent rounded-3xl p-3 shadow-2xl">
 
-                <div className="flex flex-col lg:flex-row *:lg:w-1/2 gap-10 xl:gap-20 text-justify font-light bg-white shadow-2xl rounded-2xl p-4 sm:p-6 lg:p-10">
+                <div className="flex flex-col lg:flex-row gap-10 xl:gap-20 text-justify font-light bg-white shadow-2xl rounded-2xl p-4 sm:p-6 lg:p-10">
 
-                    <div className="space-y-6 lg:space-y-12 xl:space-y-16">
+                    <div className="lg:w-2/5 space-y-6 lg:space-y-12 xl:space-y-16">
 
                         <div className="space-y-6 lg:space-y-12 xl:space-y-16">
 
@@ -92,10 +92,10 @@ export default function Process() {
                             {
                                 process.steps.map((step, idx) => {
                                     return (
-                                        <div key={idx} className="space-y-2 xl:space-y-3">
+                                        <div key={idx} className="shadow-xl rounded-2xl p-3 space-y-2 xl:space-y-3 border border-zinc-200">
 
                                             <li className="font-normal text-sm xl:text-base flex items-center gap-2 xl:gap-3">
-                                                <span className="inline text-logo">{step.icon}</span>{step.title}
+                                                <span className="inline bg-gradient text-white rounded-full p-1.5">{step.icon}</span>{step.title}
                                             </li>
 
                                             <p className="text-sm xl:text-base">

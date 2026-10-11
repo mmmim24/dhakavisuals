@@ -31,32 +31,32 @@ const cardClasses = [
 const services = [
     {
         name: <div><p>Content</p><p>Creation</p></div>,
-        icon: <CircleFadingPlus size={36} />,
+        icon: <CircleFadingPlus size={30} />,
         list: ["High-Converting Video Sales Letters", "Talking Heads", "Creator Content & Vlogs", "Short Form Contents"]
     },
     {
         name: <div><p>Event</p><p>Coverage</p></div>,
-        icon: <UserRoundGroup size={36} />,
+        icon: <UserRoundGroup size={30} />,
         list: ["Live Documentation", "Dynamic Reels", "Full-Session Recordings"]
     },
     {
         name: <div><p>Podcast</p><p>Production</p></div>,
-        icon: <MicAudioLines size={36} />,
+        icon: <MicAudioLines size={30} />,
         list: ["End-to-End Audio Visual Production", "Set Design", "Editing"]
     },
     {
         name: <div><p>Video</p><p>Production</p></div>,
-        icon: <Video size={36} />,
+        icon: <Video size={30} />,
         list: ["Brand Commercials", "Product Campaigns", "Real Estate & Architecture", "Social Ads & Reels", "Documentaries", "AI-Generated Video Content", "Drone & FPV"]
     },
     {
         name: <div><p>Creative</p><p>Photography</p></div>,
-        icon: <Camera size={36} />,
+        icon: <Camera size={30} />,
         list: ["Product Shoots", "Brand Portfolios", "Studio Sessions", "Interiors & Architecture", "Social Documentaries"]
     },
     {
         name: <div><p>Post</p><p>Production</p></div>,
-        icon: <MonitorCog size={36} />,
+        icon: <MonitorCog size={30} />,
         list: ["Advanced Editing", "Color Grading", "Motion Graphics & VFX", "Audio Engineering", "AI-Enhanced Post-Production"]
     },
 ]
@@ -89,12 +89,12 @@ export default function Services() {
                                 }
                                 className={cardClasses}
                             >
-                                <div className="bg-white lg:bg-[linear-gradient(135deg,white,rgba(235,235,235),white,rgba(235,235,235),white)] m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-80  flex flex-col items-start justify-start">
+                                <div className="bg-white lg:bg-[linear-gradient(135deg,white,rgba(235,235,235),white,rgba(235,235,235),white)] m-2 text-black shadow-2xl rounded-2xl px-12 py-8 gap-3 md:gap-6 sm:h-70 lg:h-75 xl:h-80 flex flex-col items-start justify-start">
                                     <div className="w-full flex justify-between items-center">
                                         <div className={`text-xl font-medium tracking-tighter sm:text-base md:text-xl xl:text-2xl -ml-4`}>
                                             {service.name}
                                         </div>
-                                        <div className="-ml-4 bg-logo text-white border-2 p-3 rounded-full">
+                                        <div className="-ml-4 bg-gradient text-white border-2 p-2 rounded-full">
                                             {service.icon}
                                         </div>
                                     </div>
