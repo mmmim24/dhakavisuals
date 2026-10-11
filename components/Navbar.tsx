@@ -95,9 +95,8 @@ export default function Navbar() {
                     handleNavClick(item.href);
                     window.history.pushState(null, "", item.href);
                   }}
-                  className={`relative tracking-tight  transition-all duration-200  ${
-                    isActive ? "text-logo " : "text-zinc-900 hover:text-logo"
-                  }`}>
+                  className={`relative tracking-tight  transition-all duration-200  ${isActive ? "text-logo " : "text-zinc-900 hover:text-logo"
+                    }`}>
                   {item.name}
                 </Link>
               );

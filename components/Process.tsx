@@ -41,10 +41,15 @@ const process = {
 export default function Process() {
     return (
         <section id="process" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8 ">
-
-            <h3 className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
-                How We Will Work
-            </h3>
+            <div className="text-center flex flex-col gap-4">
+                <h1
+                    className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter mb-5 lg:mb-10`}>
+                    Every project has a story. Let's make yours.
+                </h1>
+                <h3 className="text-xl md:text-2xl xl:text-3xl tracking-tight">
+                    From documentaries to brand films, we turn ideas into visual experiences
+                </h3>
+            </div>
 
             <div className="w-full max-w-7xl bg-transparent rounded-3xl p-3 shadow-2xl">
 
@@ -54,17 +59,18 @@ export default function Process() {
 
                         <div className="space-y-6 lg:space-y-12 xl:space-y-16">
 
-                            <p className="text-lg sm:text-xl xl:text-2xl">Complete Audio-Visual Solution</p>
+                            <p className="text-lg sm:text-xl xl:text-2xl">Making It Happen</p>
 
-                            <p className="italic text-sm xl:text-base tracking-tight">Dhaka Visuals is a creative audio-visual production agency in Dhaka helping brands, organizations, institutions, companies, and creators scale through cinematic commercial videos, high-converting content, and professional photography. We partner with a select group of projects each season for maximum creative focus.</p>
+                            <p className="italic text-sm xl:text-base tracking-tight">From the first idea to the final delivery, we work closely with you at every step to turn your vision into reality.
+                            </p>
 
-                            <p className="text-base sm:text-lg xl:text-xl">Transparent communication, zero creative friction, and on-time delivery guaranteed.</p>
+                            {/* <p className="text-base sm:text-lg xl:text-xl">Transparent communication, zero creative friction, and on-time delivery guaranteed.</p> */}
 
                         </div>
 
                         <Marquee autoFill={true} pauseOnHover={true} speed={100}>
 
-                            <div className="flex gap-4 *:h-65 *:w-65">
+                            <div className="flex gap-4 *:h-65 *:lg:h-100 *:w-65">
 
                                 <div className="flex-1 bg-red-500/20"></div>
 
@@ -88,7 +94,7 @@ export default function Process() {
                                     return (
                                         <div key={idx} className="space-y-2 xl:space-y-3">
 
-                                            <li className="font-normal text-sm xl:text-base flex gap-2 xl:gap-3">
+                                            <li className="font-normal text-sm xl:text-base flex items-center gap-2 xl:gap-3">
                                                 <span className="inline text-logo">{step.icon}</span>{step.title}
                                             </li>
 
