@@ -48,7 +48,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-100 bg-zinc-500/10 w-full flex flex-col gap-10 md:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
+      className="min-h-100 bg-zinc-500/10 w-full flex flex-col gap-10 md:gap-20 items-center justify-center px-4 py-12 md:py-24 sm:px-6 lg:px-8">
       <div className="text-center flex flex-col">
         <h1
           className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter mb-5 lg:mb-10`}>
@@ -69,7 +69,7 @@ export default function Contact() {
           {contacts.map((contact) => (
             <div
               key={contact.name}
-              className="h-20 bg-white rounded-xl p-4 flex items-center gap-4 text-xs md:text-sm">
+              className="h-20 bg-white shadow-2xl rounded-xl p-4 flex items-center gap-4 text-xs md:text-sm">
               <div className="bg-gradient rounded-full text-white p-2">
                 {contact.icon}
               </div>
@@ -87,7 +87,7 @@ export default function Contact() {
         </h1> */}
 
         <div
-          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:flex-row-reverse  *:items-center *:gap-2 *:nth-[1]:text-blue-500 *:nth-[3]:text-blue-600
+          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:shadow-2xl *:p-4 *:flex *:flex-row-reverse  *:items-center *:gap-2 *:nth-[1]:text-blue-500 *:nth-[3]:text-blue-600
         *:duration-500 *:transition-all">
           {socials.map((social) => (
             <Link
