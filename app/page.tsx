@@ -4,12 +4,14 @@ import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
+import { Stats } from "@/components/Stats";
 export default function Home() {
   return (
     <div className="min-h-100 max-w-full mx-auto pt-8 flex flex-col justify-center">
       <Hero />
       <Clients />
       <Services />
+      <Stats />
       <Portfolio />
       <Process />
       <Contact />

@@ -40,7 +40,7 @@ const process = {
 }
 export default function Process() {
     return (
-        <section id="process" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8 ">
+        <section id="process" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-12 md:py-24 sm:px-6 lg:px-8 ">
             <div className="text-center flex flex-col gap-5">
                 <h1
                     className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>

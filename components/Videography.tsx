@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { VideoCard } from "./VideoCard";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -9,6 +10,7 @@ type VideoItem = {
     client_name: string;
     category: string;
     image_url: string;
+    thumbnail_video?: string;
 };
 
 export default function Videography() {
@@ -24,7 +26,7 @@ export default function Videography() {
         async function loadVideos() {
             const { data, error } = await supabase
                 .from('videos')
-                .select("id, client_name, category, image_url")
+                .select("id, client_name, category, image_url, thumbnail_video")
                 .order("created_at", { ascending: true });
 
             if (!error && data) {
@@ -41,6 +43,7 @@ export default function Videography() {
     const handleVideoPage = () => {
         router.push('/videography');
     };
+    console.log(videos)
 
     if (loading) {
         return (
@@ -114,31 +117,9 @@ export default function Videography() {
                         </div>
                     ) :
                     (
-                        <div onClick={handleVideoPage} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {videos.map((video) => (
-                                <div
-                                    key={video.id}
-                                    className="group relative aspect-video sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
-                                >
-                                    <Image
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-120 group-active:scale-105 group-focus:scale-105"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        src={video.image_url}
-                                        loading="eager"
-                                        alt={`${video.client_name} - ${video.category}`}
-                                    />
-
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10"></div>
-
-                                    <div className="absolute text-left inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 sm:bg-black/20 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500">
-                                        <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
-                                            {video.client_name}
-                                        </h3>
-                                        <div className="h-px w-12 bg-logo/50 my-4"></div>
-                                        <p className="text-gray-300 text-sm mb-4">{video.category}</p>
-                                    </div>
-                                </div>
+                                <VideoCard key={video.id} video={video} />
                             ))}
                         </div>
                     )

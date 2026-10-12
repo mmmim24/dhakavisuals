@@ -35,7 +35,7 @@ const clients: Client[] = [
 
 export default function Clients() {
     return (
-        <section id="clients" className="bg-zinc-50 w-full flex flex-col gap-4 items-center justify-center py-4 shadow-xl">
+        <section id="clients" className="bg-zinc-100 w-full flex flex-col gap-4 items-center justify-center py-4 shadow-xl">
             <h5 className={`mx-auto text-sm md:text-base tracking-[8px]`}>
                 TRUSTED BY
             </h5>
