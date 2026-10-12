@@ -48,19 +48,22 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-100 bg-zinc-500/10 w-full flex flex-col gap-16 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
-      <div className="text-center flex flex-col gap-4">
+      className="min-h-100 bg-zinc-500/10 w-full flex flex-col gap-10 md:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
+      <div className="text-center flex flex-col">
         <h1
           className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter mb-5 lg:mb-10`}>
           Get in <span className="font-gradient">Touch</span>
         </h1>
-        <h3 className="text-lg md:text-xl xl:text-2xl tracking-tight">
-          Have a Story in Mind?
-        </h3>
-        <h5 className="font-light md:text-lg xl:text-xl tracking-tight">
-          Every good project starts with a conversation. Tell us what you're imagining, and let's bring it to the screen together.
-        </h5>
+        <div className="text-center flex flex-col gap-5">
+          <h3 className="text-lg md:text-xl xl:text-2xl tracking-tight">
+            Have a Story in Mind?
+          </h3>
+          <h5 className="font-light md:text-lg xl:text-xl tracking-tight">
+            Every good project starts with a conversation. Tell us what you're imagining, and let's bring it to the screen together.
+          </h5>
+        </div>
       </div>
+
       <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row gap-y-12 md:gap-x-12">
         <div className="md:w-1/2 flex flex-col gap-4 justify-between">
           {contacts.map((contact) => (

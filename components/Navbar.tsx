@@ -106,7 +106,7 @@ export default function Navbar() {
 
         <Link
           href="https://wa.me/+8801534996679"
-          className="hidden start w-32 md:flex justify-center rounded-full bg-white px-4 py-2 tracking-tight  text-logo hover:text-white transition duration-500 border-2 hover:border-logo box-border">
+          className="hidden start w-32 md:flex justify-center rounded-full bg-white px-4 py-2 tracking-tight  text-logo hover:text-white transition duration-500 border-2 hover:border-none font-medium box-border">
           Get Started
         </Link>
 
@@ -157,7 +157,7 @@ export default function Navbar() {
             <Link
               href="https://wa.me/+8801534996679"
               onClick={() => setIsOpen(false)}
-              className="mt-2 text-center rounded-md bg-logo px-4 py-2 text-base tracking-tighter font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border">
+              className="mt-2 text-center rounded-md bg-gradient px-4 py-2 text-base tracking-tighter font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border">
               Get Started
             </Link>
           </div>

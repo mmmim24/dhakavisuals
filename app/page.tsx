@@ -6,7 +6,7 @@ import Services from "@/components/Services";
 import Process from "@/components/Process";
 export default function Home() {
   return (
-    <div className="min-h-100 max-w-full mx-auto py-8 flex flex-col justify-center">
+    <div className="min-h-100 max-w-full mx-auto pt-8 flex flex-col justify-center">
       <Hero />
       <Clients />
       <Services />
