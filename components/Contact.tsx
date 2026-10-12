@@ -6,6 +6,8 @@ import {
   faFacebook,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import Instagram from "@/public/instagram.png";
+import Image from "next/image";
 import Link from "next/link";
 const contacts = [
   {
@@ -32,7 +34,7 @@ const socials = [
     value: "https://www.facebook.com/people/Dhaka-Visuals/61564926180665/",
   },
   {
-    icon: <FontAwesomeIcon icon={faInstagram} size="3x" />,
+    icon: <Image src={Instagram} alt="instagram" className="mx-1.5 w-8 md:w-10 h-auto" />,
     name: "Instagram",
     value: "https://www.instagram.com/dhakavisuals.bd/",
   },
@@ -50,16 +52,16 @@ export default function Contact() {
       <div className="text-center flex flex-col gap-4">
         <h1
           className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter mb-5 lg:mb-10`}>
-          Get in Touch
+          Get in <span className="font-gradient">Touch</span>
         </h1>
-        <h3 className="text-xl md:text-2xl xl:text-3xl tracking-tight">
+        <h3 className="text-lg md:text-xl xl:text-2xl tracking-tight">
           Have a Story in Mind?
         </h3>
         <h5 className="font-light md:text-lg xl:text-xl tracking-tight">
           Every good project starts with a conversation. Tell us what you're imagining, and let's bring it to the screen together.
         </h5>
       </div>
-      <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row gap-8">
+      <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row gap-y-12 md:gap-x-12">
         <div className="md:w-1/2 flex flex-col gap-4 justify-between">
           {contacts.map((contact) => (
             <div
@@ -82,14 +84,14 @@ export default function Contact() {
         </h1> */}
 
         <div
-          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:flex-row-reverse *:md:flex-row *:items-center *:gap-2 *:nth-[1]:text-blue-500 *:nth-[2]:text-red-600 *:nth-[3]:text-blue-600
+          className="md:w-1/2 flex flex-col gap-4 justify-between *:bg-white *:rounded-xl *:p-4 *:flex *:flex-row-reverse  *:items-center *:gap-2 *:nth-[1]:text-blue-500 *:nth-[3]:text-blue-600
         *:duration-500 *:transition-all">
           {socials.map((social) => (
             <Link
               key={social.name}
-              className="text-xs h-20 flex justify-center md:justify-end md:text-sm"
+              className="text-xs h-20 flex justify-end md:text-sm"
               href={social.value}>
-              <div>{social.name}</div>
+              <div className="text-zinc-950">{social.name}</div>
               <div>{social.icon}</div>
             </Link>
           ))}

@@ -71,10 +71,10 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
         <Link href="/" className="text-xl text-zinc-900">
           <Image
-            className="w-auto h-auto"
-            width={75}
-            height={75}
-            src={"/logo_text.png"}
+            // className="w-auto h-20"
+            width={45}
+            height={45}
+            src={"/logo_blank.png"}
             loading="eager"
             alt="Dhaka Visuals"></Image>
         </Link>
@@ -106,7 +106,7 @@ export default function Navbar() {
 
         <Link
           href="https://wa.me/+8801534996679"
-          className="hidden w-32 md:flex justify-center rounded-full bg-white hover:bg-logo px-4 py-2 tracking-tight  text-logo hover:text-white transition border-2 hover:border-logo box-border">
+          className="hidden start w-32 md:flex justify-center rounded-full bg-white px-4 py-2 tracking-tight  text-logo hover:text-white transition duration-500 border-2 hover:border-logo box-border">
           Get Started
         </Link>
 
@@ -157,7 +157,7 @@ export default function Navbar() {
             <Link
               href="https://wa.me/+8801534996679"
               onClick={() => setIsOpen(false)}
-              className="mt-2 text-center rounded-md bg-logo px-4 py-2.5 text-base tracking-tighter font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border">
+              className="mt-2 text-center rounded-md bg-logo px-4 py-2 text-base tracking-tighter font-semibold text-white hover:text-logo transition hover:bg-white border-2 box-border">
               Get Started
             </Link>
           </div>

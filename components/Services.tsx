@@ -73,7 +73,7 @@ export default function Services() {
     return (
         <section id="services" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8">
             <h3 className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
-                Our Creative Services
+                Our <span className="font-gradient">Expertise</span>
             </h3>
             <div
                 style={gridStyle}
