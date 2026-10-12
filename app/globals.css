@@ -65,3 +65,8 @@ body {
 .bg-gradient{
   background-image: linear-gradient(to right, #eb0303, #a70e0e);
 }
+
+.start:hover{
+  background-image: linear-gradient(to right, #eb0303, #a70e0e);
+  transition: all 0.5s;
+}

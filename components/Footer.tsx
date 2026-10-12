@@ -66,26 +66,27 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`font-light`}>
+    <footer className={`font-light bg-gradient text-white`}>
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-10">
-          <div className="md:col-span-4">
+        <div className="flex flex-col md:flex-row justify-between gap-8">
+
+          <div className="md:w-1/3">
             <div className="flex justify-center md:justify-start items-center md:items-start">
               <Image
                 className="w-auto h-auto"
                 width={75}
                 height={75}
-                src={"/logo_text.png"}
+                src={"/logo_white.png"}
                 loading="eager"
                 alt="Dhaka Visuals"></Image>
             </div>
 
-            <p className="mt-3 text-xl tracking-tight text-center md:text-left leading-relaxed">
-              Purpose, Made Visible
+            <p className="mt-3 text-center md:text-left leading-relaxed">
+              From photography to video production, we turn ideas into compelling visual experiences that connect, communicate, and inspire.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 justify-center sm:justify-start items-center sm:items-start text-center md:text-left gap-8 md:grid-cols-2 md:col-span-6">
+          <div className="md:w-1/2 grid grid-cols-1 justify-center sm:justify-start items-center sm:items-start text-center md:text-left gap-8 md:grid-cols-2 md:col-span-5">
             {footerSections.map((section) => (
               <div key={section.title}>
                 <h3 className="text-md font-semibold">{section.title}</h3>

@@ -41,13 +41,13 @@ const process = {
 export default function Process() {
     return (
         <section id="process" className="min-h-100 w-full flex flex-col gap-10 lg:gap-20 items-center justify-center px-4 py-8 md:py-16 sm:px-6 lg:px-8 ">
-            <div className="text-center flex flex-col gap-4">
+            <div className="text-center flex flex-col gap-5">
                 <h1
-                    className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter mb-5 lg:mb-10`}>
-                    Every project has a story. Let's make yours.
+                    className={`text-3xl md:text-4xl xl:text-5xl font-bold tracking-tighter`}>
+                    Every project has a story. <span className="font-gradient">Let's make yours.</span>
                 </h1>
-                <h3 className="text-xl md:text-2xl xl:text-3xl tracking-tight">
-                    From documentaries to brand films, we turn ideas into visual experiences
+                <h3 className="text-lg md:text-xl xl:text-2xl tracking-tight">
+                    We find the story, shape the visuals, and bring it all together
                 </h3>
             </div>
 

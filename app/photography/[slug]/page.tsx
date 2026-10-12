@@ -35,7 +35,7 @@ export default async function FolderPage({ params }: { params: Promise<{ slug: s
     if (error) {
         return (
             <div className="max-w-7xl mx-auto py-16 md:py-32 space-y-16 px-4 sm:px-6 lg:px-8 ">
-                <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>{folder}</h2>
+                <h2 className={`font-semibold text-2xl text-center tracking-widest`}>{folder}</h2>
                 <p className='text-center mt-20 text-logo'>
                     Error fetching the photos
                 </p>
@@ -45,7 +45,7 @@ export default async function FolderPage({ params }: { params: Promise<{ slug: s
 
     return (
         <div className="max-w-7xl mx-auto py-16 md:py-32 space-y-16 px-4 sm:px-6 lg:px-8 ">
-            <h2 className={`${mont.className} font-semibold text-2xl text-center tracking-widest`}>{folder}</h2>
+            <h2 className={`font-semibold text-2xl text-center tracking-widest`}>{folder}</h2>
             {
                 folder === "" ?
                     <div className='flex flex-col justify-center items-center gap-8'>
