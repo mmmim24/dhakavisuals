@@ -11,7 +11,7 @@ export interface EditableVideo {
     video_url: string;
     image_url: string;
     thumbnail_video: string;
-    aspect_ratio: string;
+    aspect_ratio?: string;
 }
 
 interface EditModalProps {
