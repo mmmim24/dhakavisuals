@@ -6,7 +6,7 @@ export default async function Photography() {
     const { data: photos, error } = await supabase
         .from('photos')
         .select('id, title, client, folder, url')
-        .order('created_at', { ascending: true });
+        .order('created_at', { ascending: false });
 
     if (error) {
         return (
