@@ -10,6 +10,7 @@ export interface EditableVideo {
     category: string;
     video_url: string;
     image_url: string;
+    thumbnail_video: string;
     aspect_ratio: string;
 }
 

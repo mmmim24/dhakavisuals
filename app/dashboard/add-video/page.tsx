@@ -11,6 +11,7 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
     const [clientName, setClientName] = useState('')
     const [category, setCategory] = useState('')
     const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
+    const [thumbnailVideo, setThumbnailVideo] = useState<File | null>(null)
     const [videoUrl, setVideoUrl] = useState('')
     const [ratio, setRatio] = useState('')
     const [uploading, setUploading] = useState(false)
@@ -24,6 +25,11 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
 
         if (!thumbnailFile) {
             setError('Please select a thumbnail image')
+            return
+        }
+
+        if (!thumbnailVideo) {
+            setError('Please select a thumbnail video')
             return
         }
 
@@ -42,8 +48,21 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                 .from('video_thumbnails')
                 .upload(fileName, thumbnailFile)
 
+            const fileExt2 = thumbnailFile.name.split('.').pop()
+            const fileName2 = `${clientName}_${category}_${crypto.randomUUID()}.${fileExt2}`
+
+            const { error: uploadError2 } = await supabase.storage
+                .from('thumbnail_videos')
+                .upload(fileName2, thumbnailVideo)
+
             if (uploadError) {
                 setError(uploadError.message)
+                setUploading(false)
+                return
+            }
+
+            if (uploadError2) {
+                setError(uploadError2.message)
                 setUploading(false)
                 return
             }
@@ -52,12 +71,17 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                 .from('video_thumbnails')
                 .getPublicUrl(fileName)
 
+            const { data: urlData2 } = supabase.storage
+                .from('thumbnail_videos')
+                .getPublicUrl(fileName2)
+
             const { error: insertError } = await supabase.from('videos').insert({
                 client_name: clientName,
                 category: category,
                 video_url: embedToUrl(videoUrl),
                 image_url: urlData.publicUrl,
-                aspect_ratio: ratio
+                aspect_ratio: ratio,
+                thumbnail_video: urlData2.publicUrl
             })
 
             if (insertError) {
@@ -70,6 +94,7 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
             setCategory('')
             setVideoUrl('')
             setThumbnailFile(null)
+            setThumbnailVideo(null)
             setRatio('')
             setUploading(false)
             onSuccess?.()
@@ -111,18 +136,37 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                         className="w-full rounded-md border px-3 py-2"
                         required
                     />
-                    <div>
-                        <label className="mb-1 block text-sm text-neutral-500">
-                            Thumbnail Image
-                        </label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => setThumbnailFile(e.target.files?.[0] ?? null)}
-                            className="w-full text-logo file:bg-zinc-200 file:p-2 file:rounded-md file:text-black file:mr-10 p-2 border border-zinc-900 rounded-md"
-                            required
-                        />
+
+                    <div className='flex space-x-3'>
+
+                        <div className='w-full'>
+                            <label className="mb-1 block text-sm text-neutral-500">
+                                Thumbnail Image
+                            </label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setThumbnailFile(e.target.files?.[0] ?? null)}
+                                className="w-full text-logo file:bg-zinc-200 file:p-2 file:rounded-md file:text-black file:mr-10 p-2 border border-zinc-900 rounded-md"
+                                required
+                            />
+                        </div>
+
+                        <div className='w-full'>
+                            <label className="mb-1 block text-sm text-neutral-500">
+                                Thumbnail Video
+                            </label>
+                            <input
+                                type="file"
+                                accept="video/*"
+                                onChange={(e) => setThumbnailVideo(e.target.files?.[0] ?? null)}
+                                className="w-full text-logo file:bg-zinc-200 file:p-2 file:rounded-md file:text-black file:mr-10 p-2 border border-zinc-900 rounded-md"
+                                required
+                            />
+                        </div>
+
                     </div>
+
 
                     <div className="flex justify-between items-end">
                         <div>

@@ -69,6 +69,21 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
             const fileName = videoToDelete.image_url.split('/').pop();
             const decoded = fileName ? decodeURIComponent(fileName) : undefined;
 
+            if (videoToDelete?.thumbnail_video) {
+                const fileName2 = videoToDelete.thumbnail_video.split('/').pop();
+                const decoded2 = fileName2 ? decodeURIComponent(fileName2) : undefined;
+
+                if (decoded2) {
+                    const { error: error2 } = await supabase.storage
+                        .from('thumbnail_videos')
+                        .remove([decoded2]);
+
+                    if (error2) {
+                        toast.error(`Entry deleted from videos table. But there was an error removing the thumbnail video from the storage: ${error2.message}`);
+                    }
+                }
+            }
+
             if (decoded) {
 
                 const { error } = await supabase.from('videos').delete().eq('id', id);
