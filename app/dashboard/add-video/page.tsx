@@ -46,14 +46,20 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
 
             const { error: uploadError } = await supabase.storage
                 .from('video_thumbnails')
-                .upload(fileName, thumbnailFile)
+                .upload(fileName, thumbnailFile, {
+                    cacheControl: '63072000, immutable',
+                    upsert: true,
+                })
 
             const fileExt2 = thumbnailFile.name.split('.').pop()
             const fileName2 = `${clientName}_${category}_${crypto.randomUUID()}.${fileExt2}`
 
             const { error: uploadError2 } = await supabase.storage
                 .from('thumbnail_videos')
-                .upload(fileName2, thumbnailVideo)
+                .upload(fileName2, thumbnailVideo, {
+                    cacheControl: '63072000, immutable',
+                    upsert: true,
+                })
 
             if (uploadError) {
                 setError(uploadError.message)

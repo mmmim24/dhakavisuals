@@ -38,7 +38,10 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
 
             const { error: uploadError } = await supabase.storage
                 .from('portfolio_photos')
-                .upload(fileName, photo)
+                .upload(fileName, photo, {
+                    cacheControl: '63072000, immutable',
+                    upsert: true,
+                })
 
             if (uploadError) {
                 setError(uploadError.message)
