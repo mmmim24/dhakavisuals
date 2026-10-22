@@ -1,10 +1,10 @@
 import { CountUp } from "./CountUp";
 
 const stats = [
-    { end: 100, suffix: "+", label: "Projects Completed" },
+    { end: 50, suffix: "+", label: "Projects Completed" },
     { end: 50, suffix: "+", label: "Clients & Partners" },
-    { end: 100, suffix: "+", label: "Videos Produced" },
-    { end: 5, suffix: "+", label: "Years of Experience" },
+    { end: 20, suffix: "M+", label: "Views Generated" },
+    { end: 6, suffix: "+", label: "Years of Experience" },
 ];
 
 export function Stats() {

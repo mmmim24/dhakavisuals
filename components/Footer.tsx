@@ -97,7 +97,7 @@ export default function Footer() {
                         <Link
                           href={link.href}
                           target="_blank"
-                          className=" transition-colors hover:text-logo flex justify-center md:justify-start items-center gap-1">
+                          className=" transition-all duration-500 hover:font-semibold flex justify-center md:justify-start items-center gap-1">
                           {link.icon}
                           {link.name}
                         </Link>
