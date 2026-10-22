@@ -8,10 +8,6 @@ import { useRouter } from 'next/navigation'
 export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void }) {
     const supabase = createClient()
 
-    const [clientName, setClientName] = useState('')
-    const [category, setCategory] = useState('')
-    const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
-    const [thumbnailVideo, setThumbnailVideo] = useState<File | null>(null)
     const [videoUrl, setVideoUrl] = useState('')
     const [ratio, setRatio] = useState('')
     const [uploading, setUploading] = useState(false)
@@ -23,16 +19,6 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
         e.preventDefault()
         setError('')
 
-        if (!thumbnailFile) {
-            setError('Please select a thumbnail image')
-            return
-        }
-
-        if (!thumbnailVideo) {
-            setError('Please select a thumbnail video')
-            return
-        }
-
         if (!ratio) {
             setError('Please select a ratio');
             return;
@@ -41,53 +27,9 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
         setUploading(true)
 
         try {
-            const fileExt = thumbnailFile.name.split('.').pop()
-            const fileName = `${clientName}_${category}_${crypto.randomUUID()}.${fileExt}`
-
-            const { error: uploadError } = await supabase.storage
-                .from('video_thumbnails')
-                .upload(fileName, thumbnailFile, {
-                    cacheControl: '63072000, immutable',
-                    upsert: true,
-                })
-
-            const fileExt2 = thumbnailFile.name.split('.').pop()
-            const fileName2 = `${clientName}_${category}_${crypto.randomUUID()}.${fileExt2}`
-
-            const { error: uploadError2 } = await supabase.storage
-                .from('thumbnail_videos')
-                .upload(fileName2, thumbnailVideo, {
-                    cacheControl: '63072000, immutable',
-                    upsert: true,
-                })
-
-            if (uploadError) {
-                setError(uploadError.message)
-                setUploading(false)
-                return
-            }
-
-            if (uploadError2) {
-                setError(uploadError2.message)
-                setUploading(false)
-                return
-            }
-
-            const { data: urlData } = supabase.storage
-                .from('video_thumbnails')
-                .getPublicUrl(fileName)
-
-            const { data: urlData2 } = supabase.storage
-                .from('thumbnail_videos')
-                .getPublicUrl(fileName2)
-
             const { error: insertError } = await supabase.from('videos').insert({
-                client_name: clientName,
-                category: category,
-                video_url: embedToUrl(videoUrl),
-                image_url: urlData.publicUrl,
-                aspect_ratio: ratio,
-                thumbnail_video: urlData2.publicUrl
+                url: embedToUrl(videoUrl),
+                ratio: ratio
             })
 
             if (insertError) {
@@ -96,11 +38,7 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                 return
             }
 
-            setClientName('')
-            setCategory('')
             setVideoUrl('')
-            setThumbnailFile(null)
-            setThumbnailVideo(null)
             setRatio('')
             setUploading(false)
             onSuccess?.()
@@ -114,26 +52,9 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
     return (
         <>
             <div className='max-w-7xl mx-auto my-20'>
-                <form onSubmit={handleSubmit} className="w-full space-y-3 rounded-lg border p-4">
-                    <div className="flex space-x-3">
 
-                        <input
-                            type="text"
-                            placeholder="Client name"
-                            value={clientName}
-                            onChange={(e) => setClientName(e.target.value)}
-                            className="w-full rounded-md border px-3 py-2"
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="Category (Event Coverage/Podcast/Commercial)"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            className="w-full rounded-md border px-3 py-2"
-                            required
-                        />
-                    </div>
+                <form onSubmit={handleSubmit} className="w-full space-y-3 rounded-lg border p-4">
+
                     <input
                         type="text"
                         placeholder="YouTube or Facebook video link"
@@ -142,37 +63,6 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
                         className="w-full rounded-md border px-3 py-2"
                         required
                     />
-
-                    <div className='flex space-x-3'>
-
-                        <div className='w-full'>
-                            <label className="mb-1 block text-sm text-neutral-500">
-                                Thumbnail Image
-                            </label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setThumbnailFile(e.target.files?.[0] ?? null)}
-                                className="w-full text-logo file:bg-zinc-200 file:p-2 file:rounded-md file:text-black file:mr-10 p-2 border border-zinc-900 rounded-md"
-                                required
-                            />
-                        </div>
-
-                        <div className='w-full'>
-                            <label className="mb-1 block text-sm text-neutral-500">
-                                Thumbnail Video
-                            </label>
-                            <input
-                                type="file"
-                                accept="video/*"
-                                onChange={(e) => setThumbnailVideo(e.target.files?.[0] ?? null)}
-                                className="w-full text-logo file:bg-zinc-200 file:p-2 file:rounded-md file:text-black file:mr-10 p-2 border border-zinc-900 rounded-md"
-                                required
-                            />
-                        </div>
-
-                    </div>
-
 
                     <div className="flex justify-between items-end">
                         <div>
@@ -196,7 +86,9 @@ export default function VideoUploadForm({ onSuccess }: { onSuccess?: () => void 
 
                         {error && <p className="text-sm text-red-500">{error}</p>}
                     </div>
+
                 </form>
+
             </div>
         </>
     )

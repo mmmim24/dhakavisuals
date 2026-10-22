@@ -30,8 +30,8 @@ export default function Page() {
         router.push('/dashboard/add-video')
     }
 
-    const addTestimonial = () => {
-        router.push('/dashboard/add-testimonial')
+    const addThumbnails = () => {
+        router.push('/dashboard/add-thumbnails')
     }
 
     return (
@@ -47,9 +47,9 @@ export default function Page() {
                 <div onClick={addVideo} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
                     Add Video
                 </div>
-                {/* <div onClick={addTestimonial} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
-                    Add Testimonial
-                </div> */}
+                <div onClick={addThumbnails} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
+                    Add Thumbnails
+                </div>
                 <div onClick={handleLogOut} className="bg-logo text-white px-4 py-2 rounded-3xl font-semibold hover:bg-white hover:text-logo hover:border-logo border-2 transition duration-300 hover:cursor-pointer">
                     Logout
                 </div>

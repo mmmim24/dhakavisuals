@@ -6,12 +6,8 @@ import { X } from 'lucide-react';
 
 export interface EditableVideo {
     id: number;
-    client_name: string;
-    category: string;
-    video_url: string;
-    image_url: string;
-    thumbnail_video: string;
-    aspect_ratio?: string;
+    url: string;
+    ratio?: string;
 }
 
 interface EditModalProps {
@@ -35,7 +31,7 @@ export default function EditModal({ video, onClose, onSave }: EditModalProps) {
         setSaving(true);
 
         try {
-            await onSave({ ...form, video_url: form.video_url === video.video_url ? video.video_url : embedToUrl(form.video_url) });
+            await onSave({ ...form, url: form.url === video.url ? video.url : embedToUrl(form.url) });
         } catch (saveError) {
             setError(saveError instanceof Error ? saveError.message : 'Unable to save video');
         } finally {
@@ -54,31 +50,28 @@ export default function EditModal({ video, onClose, onSave }: EditModalProps) {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                        Client name
-                        <input required value={form.client_name} onChange={(event) => setForm({ ...form, client_name: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
-                    </label>
-                    <label className="block text-sm font-medium text-gray-700">
-                        Category
-                        <input required value={form.category} onChange={(event) => setForm({ ...form, category: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
-                    </label>
+
                     <label className="block text-sm font-medium text-gray-700">
                         Video URL
-                        <input required value={form.video_url} onChange={(event) => setForm({ ...form, video_url: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
+                        <input required value={form.url} onChange={(event) => setForm({ ...form, url: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
                     </label>
+
                     <label className="block text-sm font-medium text-gray-700">
                         Aspect_ratio ratio
-                        <select value={form.aspect_ratio} onChange={(event) => setForm({ ...form, aspect_ratio: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2">
+                        <select value={form.ratio} onChange={(event) => setForm({ ...form, ratio: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2">
                             <option value="16/9">Landscape (16:9)</option>
                             <option value="1/1">Square (1:1)</option>
                             <option value="9/16">Reel (9:16)</option>
                         </select>
                     </label>
+
                     {error && <p className="text-sm text-red-600" role="alert">{error}</p>}
+
                     <div className="flex justify-end gap-3 pt-2">
                         <button type="button" onClick={onClose} className="rounded-md border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50">Cancel</button>
                         <button type="submit" disabled={saving} className="rounded-md bg-logo px-4 py-2 text-white disabled:opacity-50">{saving ? 'Saving...' : 'Save changes'}</button>
                     </div>
+
                 </form>
             </div>
         </div>
