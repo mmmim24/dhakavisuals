@@ -6,7 +6,7 @@ export default async function Photography() {
     const supabase = await createClient();
 
     const { data: newFolders, error: newError } = await supabase.from('folders')
-        .select('*');
+        .select('*').order('created_at');
 
     return (
         <div className="max-w-7xl min-h-screen mx-auto flex flex-col items-center gap-16 py-16 md:py-32">
