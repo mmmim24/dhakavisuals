@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 import { Toaster, toast } from 'react-hot-toast';
@@ -12,6 +12,42 @@ export interface IPhoto {
     folder: string;
     url: string;
 }
+
+const MAX_PHOTOS_PER_ROW = 3;
+const TARGET_ROW_HEIGHT = 240;
+const PHOTO_GAP = 8;
+
+function getPhotoRows(photos: IPhoto[], photoRatios: Record<number, number>, containerWidth: number) {
+    const costs: number[] = Array.from({ length: photos.length + 1 }, () => Number.POSITIVE_INFINITY);
+    const rowSizes: number[] = Array.from({ length: photos.length }, () => 1);
+    costs[photos.length] = 0;
+
+    for (let start = photos.length - 1; start >= 0; start--) {
+        let aspectRatioSum = 0;
+
+        for (let size = 1; size <= MAX_PHOTOS_PER_ROW && start + size <= photos.length; size++) {
+            aspectRatioSum += photoRatios[photos[start + size - 1].id] ?? 1;
+            const rowHeight = Math.max(1, containerWidth - PHOTO_GAP * (size - 1)) / aspectRatioSum;
+            const heightDeviation = Math.log(rowHeight / TARGET_ROW_HEIGHT);
+            const cost = heightDeviation ** 2 + costs[start + size];
+
+            if (cost < costs[start]) {
+                costs[start] = cost;
+                rowSizes[start] = size;
+            }
+        }
+    }
+
+    const rows: IPhoto[][] = [];
+    for (let start = 0; start < photos.length;) {
+        const size = rowSizes[start];
+        rows.push(photos.slice(start, start + size));
+        start += size;
+    }
+
+    return rows;
+}
+
 interface PhotoGridProps {
     slug: string;
     initialPhotos: IPhoto[];
@@ -26,9 +62,25 @@ export default function PhotoGrid({ slug, initialPhotos, totalCount, initialCoun
     const [isAdmin, setIsAdmin] = useState(false);
     const [count, setCount] = useState(totalCount);
     const [editingPhoto, setEditingPhoto] = useState<IPhoto | null>(null);
+    const [photoRatios, setPhotoRatios] = useState<Record<number, number>>({});
+    const [containerWidth, setContainerWidth] = useState(0);
+    const gridRef = useRef<HTMLDivElement>(null);
     const supabase = createClient();
 
     const hasMore = photos.length < count;
+    const rows = getPhotoRows(photos, photoRatios, containerWidth || 1024);
+
+    useEffect(() => {
+        const grid = gridRef.current;
+        if (!grid) return;
+
+        const observer = new ResizeObserver(([entry]) => {
+            setContainerWidth(entry.contentRect.width);
+        });
+
+        observer.observe(grid);
+        return () => observer.disconnect();
+    }, []);
 
     async function loadMore() {
         setLoading(true);
@@ -121,28 +173,48 @@ export default function PhotoGrid({ slug, initialPhotos, totalCount, initialCoun
     return (
         <div>
             <Toaster />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                {photos.map((photo) => (
-                    <div key={photo.id} className="group relative aspect-square rounded-md overflow-hidden">
-                        <div>
+            <div ref={gridRef} className="flex flex-col gap-2">
+                {rows.map((row, rowIndex) => (
+                    <div key={rowIndex} className="flex w-full items-start gap-2">
+                        {row.map((photo) => {
+                            const ratio = photoRatios[photo.id] ?? 1;
 
-                            <Image
-                                src={photo.url}
-                                alt={photo.folder ?? ''}
-                                fill
-                                className="object-cover"
-                                loading="lazy"
-                            />
-                        </div>
-                        {isAdmin &&
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10 invisible group-hover:visible flex flex-col justify-center items-center gap-4 md:gap-6 xl:gap-8 text-xl lg:text-2xl
-                                text-white">
-                                <button type="button"
-                                    onClick={() => handleEdit(photo.id)}
-                                    className='rounded-xl border border-white hover:bg-white hover:text-black cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Edit <SquarePen /></button>
-                                <button type="button" onClick={() => handleRemove(photo.id)} className='rounded-xl border border-white hover:bg-logo hover:text-white cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Remove <Trash /></button>
-                            </div>
-                        }
+                            return (
+                                <div
+                                    key={photo.id}
+                                    className="group relative min-w-0 overflow-hidden rounded-md"
+                                    style={{ flex: `${ratio} 1 0%`, aspectRatio: ratio }}
+                                >
+                                    <Image
+                                        src={photo.url}
+                                        alt={photo.folder ?? ''}
+                                        fill
+                                        className="object-contain"
+                                        loading="lazy"
+                                        sizes={`${Math.ceil(100 / row.length)}vw`}
+                                        onLoad={(event) => {
+                                            const { naturalWidth, naturalHeight } = event.currentTarget;
+                                            if (naturalWidth && naturalHeight) {
+                                                const ratio = naturalWidth / naturalHeight;
+                                                setPhotoRatios((current) => (
+                                                    current[photo.id] === ratio
+                                                        ? current
+                                                        : { ...current, [photo.id]: ratio }
+                                                ));
+                                            }
+                                        }}
+                                    />
+                                    {isAdmin &&
+                                        <div className="absolute inset-0 z-10 invisible flex flex-col items-center justify-center gap-4 bg-black/20 text-xl text-white transition-colors duration-500 group-hover:visible group-hover:bg-black group-active:bg-black/60 group-focus:bg-black/60 md:gap-6 lg:text-2xl xl:gap-8">
+                                            <button type="button"
+                                                onClick={() => handleEdit(photo.id)}
+                                                className='flex cursor-pointer items-center gap-3 rounded-xl border border-white px-4 py-2 transition-colors duration-300 hover:bg-white hover:text-black'>Edit <SquarePen /></button>
+                                            <button type="button" onClick={() => handleRemove(photo.id)} className='flex cursor-pointer items-center gap-3 rounded-xl border border-white px-4 py-2 transition-colors duration-300 hover:bg-logo hover:text-white'>Remove <Trash /></button>
+                                        </div>
+                                    }
+                                </div>
+                            );
+                        })}
                     </div>
                 ))}
             </div>
