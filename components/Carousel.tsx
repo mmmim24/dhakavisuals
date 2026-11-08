@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { IPhoto } from './PhotoGrid';
@@ -41,9 +41,9 @@ export default function Carousel({ images }: CarouselProps) {
         router.push('/photography');
     }
 
-    const nextSlide = () => {
+    const nextSlide = useCallback(() => {
         setCurrentIndex((prevIndex) => (prevIndex >= maxIndex ? 0 : prevIndex + 1));
-    };
+    }, [maxIndex]);
 
     const prevSlide = () => {
         setCurrentIndex((prevIndex) => (prevIndex <= 0 ? maxIndex : prevIndex - 1));
@@ -75,6 +75,11 @@ export default function Carousel({ images }: CarouselProps) {
     };
 
     const shiftPercentage = (currentIndex * 100) / itemsPerPage;
+
+    useEffect(() => {
+        const intervalId = window.setInterval(nextSlide, 3000);
+        return () => window.clearInterval(intervalId);
+    }, [nextSlide]);
 
     return (
         <>

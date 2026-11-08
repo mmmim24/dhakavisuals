@@ -1,20 +1,56 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
 export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void }) {
-    const supabase = createClient()
+    const supabase = useMemo(() => createClient(), [])
 
     const [title, setTitle] = useState('');
     const [clientName, setClientName] = useState('');
     const [photo, setPhoto] = useState<File | null>(null);
+    const [folders, setFolders] = useState<string[]>([]);
+    const [loadingFolders, setLoadingFolders] = useState(true);
     const [folder, setFolder] = useState('');
     const [uploading, setUploading] = useState(false)
     const [error, setError] = useState('')
 
     const router = useRouter();
+
+    useEffect(() => {
+        let isMounted = true;
+
+        async function getFolders() {
+            try {
+                const { data, error: foldersError } = await supabase
+                    .from('folders')
+                    .select('name')
+                    .order('created_at', { ascending: true });
+
+                if (!isMounted) return;
+
+                if (foldersError) {
+                    setError(foldersError.message);
+                    return;
+                }
+
+                setFolders((data ?? []).map(({ name }) => name));
+            } catch (loadError) {
+                if (isMounted) {
+                    setError(loadError instanceof Error ? loadError.message : 'Unable to load folders');
+                }
+            } finally {
+                if (isMounted) setLoadingFolders(false);
+            }
+        }
+
+        void getFolders();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [supabase]);
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
@@ -84,12 +120,19 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
                         <label className="mb-1 block text-sm text-neutral-500">
                             Folder
                         </label>
-                        <select onChange={(e) => setFolder(e.target.value)} className='w-full border p-2 rounded-md' required>
-                            <option value={folder}>Select</option>
-                            <option value="architecture">Architecture & Interior</option>
-                            <option value="documentary">Documentary</option>
-                            <option value="edinst">Educational Institutions</option>
-                            <option value="event">Event</option>
+                        <select
+                            value={folder}
+                            onChange={(e) => setFolder(e.target.value)}
+                            className='w-full border p-2 rounded-md'
+                            disabled={loadingFolders || folders.length === 0}
+                            required
+                        >
+                            <option value="" disabled>
+                                {loadingFolders ? 'Loading folders...' : folders.length ? 'Select a folder' : 'No folders available'}
+                            </option>
+                            {folders.map((folderName) => (
+                                <option key={folderName} value={folderName}>{folderName}</option>
+                            ))}
                         </select>
                     </div>
 
@@ -114,8 +157,8 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
                             {uploading ? 'Uploading...' : 'Add Photo'}
                         </button>
 
-                        {error && <p className="text-sm text-red-500">{error}</p>}
                     </div>
+                    {error && <p className="text-sm text-red-500" role="alert">{error}</p>}
                 </form>
             </div>
         </>
