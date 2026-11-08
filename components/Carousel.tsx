@@ -3,15 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { IPhoto } from './PhotoGrid';
 
 interface CarouselProps {
-    images: {
-        id: string;
-        title: string;
-        folder: string;
-        client: string;
-        url: string
-    }[];
+    images: IPhoto[];
 }
 
 export default function Carousel({ images }: CarouselProps) {
@@ -103,20 +98,28 @@ export default function Carousel({ images }: CarouselProps) {
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEndHandler}
                 >
-                    {images.map((img) => (
-                        <div key={img.id} className="w-full sm:w-1/2 lg:w-1/3 shrink-0 p-3">
-                            <div className="relative hover:scale-110 hover:rounded-lg transition-all duration-500 w-full h-96 sm:h-64">
-                                <Image
-                                    src={img.url}
-                                    alt={`${img.title}_${img.client}_${img.folder}` || `Carousel image ${img.id + 1}`}
-                                    loading='eager'
-                                    fill
-                                    className="object-cover rounded-xl shadow-md pointer-events-none"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                />
-                            </div>
-                        </div>
-                    ))}
+                    {images.map((img) => {
+                        if (img.url)
+                            return (
+
+                                <div key={img.id} className="w-full sm:w-1/2 lg:w-1/3 shrink-0 p-3">
+                                    <div className="relative hover:scale-110 hover:rounded-lg transition-all duration-500 w-full h-96 sm:h-64">
+                                        <div className='z-10 h-full rounded-xl inset-0 text-white font-bold uppercase tracking-widest hover:bg-black/60 opacity-0 hover:opacity-100 flex flex-col items-center justify-center transition-all'>
+                                            {img.folder}
+                                        </div>
+                                        <Image
+                                            src={img.url}
+                                            alt={`${img.folder}` || `Carousel image ${img.id + 1}`}
+                                            loading='eager'
+                                            fill
+                                            className="-z-10 object-cover rounded-xl shadow-md pointer-events-none"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        />
+                                    </div>
+                                </div>
+                            )
+                    }
+                    )}
                 </div>
 
                 <button

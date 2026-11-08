@@ -3,25 +3,29 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
-import { Photo } from './PhotoFolder';
 import { Toaster, toast } from 'react-hot-toast';
 import { SquarePen, Trash } from 'lucide-react';
 import EditModal from './EditPhotoModal';
 
+export interface IPhoto {
+    id: number;
+    folder: string;
+    url: string;
+}
 interface PhotoGridProps {
     slug: string;
-    initialPhotos: Photo[];
+    initialPhotos: IPhoto[];
     totalCount: number;
     initialCount: number;
 }
 
 export default function PhotoGrid({ slug, initialPhotos, totalCount, initialCount }: PhotoGridProps) {
 
-    const [photos, setPhotos] = useState<Photo[]>(initialPhotos);
+    const [photos, setPhotos] = useState<IPhoto[]>(initialPhotos);
     const [loading, setLoading] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [count, setCount] = useState(totalCount);
-    const [editingPhoto, setEditingPhoto] = useState<Photo | null>(null);
+    const [editingPhoto, setEditingPhoto] = useState<IPhoto | null>(null);
     const supabase = createClient();
 
     const hasMore = photos.length < count;
@@ -97,12 +101,10 @@ export default function PhotoGrid({ slug, initialPhotos, totalCount, initialCoun
         setPhotos((currentPhotos) => currentPhotos.filter((photo) => photo.id !== id));
     }
 
-    const handleSave = async (updatedPhoto: Photo) => {
+    const handleSave = async (updatedPhoto: IPhoto) => {
         const { error } = await supabase
             .from('photos')
             .update({
-                title: updatedPhoto.title,
-                client: updatedPhoto.client,
                 folder: updatedPhoto.folder,
                 url: updatedPhoto.url,
             })
@@ -126,7 +128,7 @@ export default function PhotoGrid({ slug, initialPhotos, totalCount, initialCoun
 
                             <Image
                                 src={photo.url}
-                                alt={photo.title ?? ''}
+                                alt={photo.folder ?? ''}
                                 fill
                                 className="object-cover"
                                 loading="lazy"

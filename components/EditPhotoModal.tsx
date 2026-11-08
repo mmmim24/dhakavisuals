@@ -3,12 +3,12 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { embedToUrl } from '@/lib/regex';
 import { X } from 'lucide-react';
-import { Photo } from "./PhotoFolder";
+import { IPhoto } from "./PhotoGrid";
 
 interface EditModalProps {
-    photo: Photo;
+    photo: IPhoto;
     onClose: () => void;
-    onSave: (photo: Photo) => Promise<void>;
+    onSave: (photo: IPhoto) => Promise<void>;
 }
 
 export default function EditModal({ photo, onClose, onSave }: EditModalProps) {
@@ -45,14 +45,14 @@ export default function EditModal({ photo, onClose, onSave }: EditModalProps) {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <label className="block text-sm font-medium text-gray-700">
+                    {/* <label className="block text-sm font-medium text-gray-700">
                         Title
                         <input required value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
                     </label>
                     <label className="block text-sm font-medium text-gray-700">
                         Client name
                         <input required value={form.client} onChange={(event) => setForm({ ...form, client: event.target.value })} className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2" />
-                    </label>
+                    </label> */}
                     <label className="block text-sm font-medium text-gray-700">
                         Folder
                         <select onChange={(e) => setForm({ ...form, folder: e?.target.value })} className='mt-1 w-full rounded-md border border-gray-300 px-3 py-2' required>

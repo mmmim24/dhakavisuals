@@ -5,57 +5,18 @@ import { mont } from '../fonts';
 export default async function Photography() {
     const supabase = await createClient();
 
-    const { data: arcThumbnail, error: arcThumbnailError } = await supabase
-        .from('photos')
-        .select('*')
-        .eq('folder', 'architecture').limit(1);
-
-    const { data: docThumbnail, error: docThumbnailError } = await supabase
-        .from('photos')
-        .select('*')
-        .eq('folder', 'documentary').limit(1);
-
-    const { data: edThumbnail, error: edThumbnailError } = await supabase
-        .from('photos')
-        .select('*')
-        .eq('folder', 'edinst').limit(1);
-
-    const { data: eventThumbnail, error: eventThumbnailError } = await supabase
-        .from('photos')
-        .select('*')
-        .eq('folder', 'event').limit(1);
-
-    const Folders = [
-        {
-            name: "Architecture & Interior",
-            slug: "architecture",
-            thumbnail: arcThumbnail,
-            error: arcThumbnailError
-        },
-        {
-            name: "Documentary",
-            slug: "documentary",
-            thumbnail: docThumbnail,
-            error: docThumbnailError
-        },
-        {
-            name: "Educational Institutions",
-            slug: "edinst",
-            thumbnail: edThumbnail,
-            error: edThumbnailError
-        },
-        {
-            name: "Event",
-            slug: "event",
-            thumbnail: eventThumbnail,
-            error: eventThumbnailError
-        }
-    ]
+    const { data: newFolders, error: newError } = await supabase.from('folders')
+        .select('*');
 
     return (
         <div className="max-w-7xl min-h-screen mx-auto flex flex-col items-center gap-16 py-16 md:py-32">
             <h2 className={`font-semibold text-2xl text-center tracking-widest`}>Gallery</h2>
-            <PhotoFolder folders={Folders} />
+            {
+                newError
+                    ? <p className='text-center mt-20 text-xs text-logo'>{newError.message}</p>
+                    :
+                    <PhotoFolder folders={newFolders} />
+            }
         </div >
     )
 }

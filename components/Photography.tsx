@@ -4,8 +4,8 @@ import Carousel from "./Carousel";
 export default async function Photography() {
     const supabase = await createClient();
     const { data: photos, error } = await supabase
-        .from('photos')
-        .select('id, title, client, folder, url')
+        .from('folders')
+        .select('id, name, cover')
         .order('created_at', { ascending: false });
 
     if (error) {
@@ -21,10 +21,8 @@ export default async function Photography() {
 
     const carouselPhotos = (photos ?? []).map((photo) => ({
         id: photo.id,
-        title: photo.title,
-        client: photo.client,
-        folder: photo.folder,
-        url: photo.url
+        folder: photo.name,
+        url: photo.cover
     }));
 
     return (

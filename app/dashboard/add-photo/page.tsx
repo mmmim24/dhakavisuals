@@ -33,11 +33,12 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
         setUploading(true)
 
         try {
-            const fileExt = photo.name.split('.').pop()
-            const fileName = `${title}_${clientName}_${folder}_${crypto.randomUUID()}.${fileExt}`
+            const fileNameArray = photo.name.split('.');
+            const fileExt = fileNameArray.at(-1)
+            const fileName = `${fileNameArray.at(-2)}_${folder}_${crypto.randomUUID()}.${fileExt}`
 
             const { error: uploadError } = await supabase.storage
-                .from('portfolio_photos')
+                .from('photos')
                 .upload(fileName, photo, {
                     cacheControl: '63072000, immutable',
                     upsert: true,
@@ -50,12 +51,10 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
             }
 
             const { data: urlData } = supabase.storage
-                .from('portfolio_photos')
+                .from('photos')
                 .getPublicUrl(fileName)
 
             const { error: insertError } = await supabase.from('photos').insert({
-                title: title,
-                client: clientName,
                 folder: folder,
                 url: urlData.publicUrl
             })
@@ -66,8 +65,6 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
                 return
             }
 
-            setTitle('');
-            setClientName('')
             setFolder('')
             setPhoto(null)
             setUploading(false)
@@ -83,25 +80,6 @@ export default function PhotoUploadForm({ onSuccess }: { onSuccess?: () => void 
         <>
             <div className='max-w-7xl mx-auto my-20'>
                 <form onSubmit={handleSubmit} className="w-full space-y-3 rounded-lg border p-4">
-                    <div className="flex space-x-3">
-
-                        <input
-                            type="text"
-                            placeholder="Photo title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            className="w-full rounded-md border px-3 py-2"
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="Client name"
-                            value={clientName}
-                            onChange={(e) => setClientName(e.target.value)}
-                            className="w-full rounded-md border px-3 py-2"
-                            required
-                        />
-                    </div>
                     <div>
                         <label className="mb-1 block text-sm text-neutral-500">
                             Folder
