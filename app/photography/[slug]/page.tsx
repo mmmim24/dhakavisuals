@@ -49,7 +49,7 @@ export default async function FolderPage({ params }: { params: Promise<{ slug: s
                         </Link>
                     </div> :
                     <PhotoGrid
-                        slug={slug}
+                        folderName={folderName}
                         initialPhotos={photos ?? []}
                         totalCount={count ?? 0}
                         initialCount={initial}

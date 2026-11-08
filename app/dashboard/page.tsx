@@ -51,10 +51,6 @@ export default function Page() {
         }
     }
 
-    const addPhoto = () => {
-        router.push('/dashboard/add-photo')
-    }
-
     const addVideo = () => {
         router.push('/dashboard/add-video')
     }
@@ -68,16 +64,13 @@ export default function Page() {
             <div className="min-h-100 py-10 md:py-20 flex flex-col gap-10 items-center justify-center">
                 <h1 className="text-3xl md:text-5xl tracking-tight md:tracking-tightest font-semibold">Protected Dashboard</h1>
                 <div onClick={addFolder} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
-                    Create an Album
-                </div>
-                <div onClick={addPhoto} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
-                    Add Photo
+                    Create an Photo Album
                 </div>
                 <div onClick={addVideo} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
-                    Add Video
+                    Add Videos
                 </div>
                 <div onClick={addThumbnails} className="bg-white text-logo px-4 py-2 rounded-3xl font-semibold hover:bg-logo hover:text-white hover:border-white border-2 transition duration-300 hover:cursor-pointer">
-                    Add Thumbnails
+                    Add Video Thumbnails
                 </div>
                 <div onClick={handleLogOut} className="bg-logo text-white px-4 py-2 rounded-3xl font-semibold hover:bg-white hover:text-logo hover:border-logo border-2 transition duration-300 hover:cursor-pointer">
                     Logout
