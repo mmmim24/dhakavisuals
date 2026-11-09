@@ -261,9 +261,9 @@ export default function PhotoFolder({ folders }: FolderProps) {
     return (
         <>
             <Toaster />
-            <div className="grid grid-cols-1 gap-20 md:grid-cols-2 *:flex *:flex-col *:items-center *:gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 md:gap-x-0 gap-y-10  md:grid-cols-3 lg:grid-cols-4 *:flex *:flex-col *:items-center *:gap-1">
                 {folderList.map((folder) => (
-                    <div key={folder.name}>
+                    <div className='' key={folder.name}>
                         <div className="flex w-75 items-center justify-between">
                             {isAdmin ? (
                                 <button
@@ -290,9 +290,9 @@ export default function PhotoFolder({ folders }: FolderProps) {
                             ) : <span />}
                         </div>
 
-                        <Link href={`/photography/${encodeURIComponent(folder.name)}`} className="h-45 w-80 rounded-xl shadow-2xl transition-all duration-500 hover:translate-y-8 hover:scale-125">
+                        <Link href={`/photography/${encodeURIComponent(folder.name)}`} className="w-85 sm:w-70 md:w-60 xl:w-70 aspect-square rounded-xl shadow-2xl transition-all duration-500 hover:translate-y-8 hover:scale-125">
                             {folder.cover ? (
-                                <Image loading="eager" className="aspect-video w-full rounded-2xl object-cover p-2" src={folder.cover} alt={`Thumbnail photo of ${folder.name} Folder`} width={200} height={200} />
+                                <Image loading="eager" className="aspect-square w-full rounded-2xl object-cover p-2" src={folder.cover} alt={`Thumbnail photo of ${folder.name} Folder`} width={200} height={200} />
                             ) : (
                                 <p className="mt-20 text-center text-xs text-logo">No album cover found</p>
                             )}

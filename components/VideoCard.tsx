@@ -99,7 +99,7 @@ export function VideoCard({ video }: { video: VideoItem }) {
             onFocus={stopVideo}
             onBlur={startVideo}
             tabIndex={0}
-            className="group relative aspect-video sm:aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+            className="group relative aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
         >
             <Toaster />
             {video.url && (
