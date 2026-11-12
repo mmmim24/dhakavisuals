@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { SquarePen, Trash } from "lucide-react";
+import { useRef, useState, useEffect, type FormEvent } from "react";
+import { SquarePen, Trash, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
@@ -35,6 +35,12 @@ export function VideoCard({ video }: { video: VideoItem }) {
     const router = useRouter();
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [clientName, setClientName] = useState(video.client_name);
+    const [category, setCategory] = useState(video.category);
+    const [editForm, setEditForm] = useState({ client_name: video.client_name, category: video.category });
+    const [isSaving, setIsSaving] = useState(false);
+    const [editError, setEditError] = useState("");
 
     const startVideo = () => {
         const el = videoRef.current;
@@ -62,7 +68,48 @@ export function VideoCard({ video }: { video: VideoItem }) {
     };
 
     function handleEdit() {
-        console.log('editing...')
+        setEditForm({ client_name: clientName, category });
+        setEditError("");
+        setIsEditOpen(true);
+    }
+
+    async function handleSave(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setEditError("");
+        setIsSaving(true);
+
+        const updatedClientName = editForm.client_name.trim();
+        const updatedCategory = editForm.category.trim();
+
+        if (!updatedClientName || !updatedCategory) {
+            setEditError("Client name and category are required.");
+            setIsSaving(false);
+            return;
+        }
+
+        try {
+            const { error } = await supabase
+                .from("thumbnail_videos")
+                .update({
+                    client_name: updatedClientName,
+                    category: updatedCategory,
+                })
+                .eq("id", video.id);
+
+            if (error) {
+                setEditError(`Unable to update video: ${error.message}`);
+                return;
+            }
+
+            setClientName(updatedClientName);
+            setCategory(updatedCategory);
+            setIsEditOpen(false);
+            toast.success("Video updated successfully");
+        } catch (saveError) {
+            setEditError(saveError instanceof Error ? saveError.message : "Unable to update video");
+        } finally {
+            setIsSaving(false);
+        }
     }
 
     async function handleRemove() {
@@ -92,55 +139,125 @@ export function VideoCard({ video }: { video: VideoItem }) {
     }
 
     return (
-        <div
-            onClick={handleVideoPage}
-            onMouseEnter={stopVideo}
-            onMouseLeave={startVideo}
-            onFocus={stopVideo}
-            onBlur={startVideo}
-            tabIndex={0}
-            className="group relative aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
-        >
-            <Toaster />
-            {video.url && (
-                <video
-                    autoPlay
-                    ref={videoRef}
-                    src={video.url}
-                    poster={video.url}
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    onPlaying={() => setIsPlaying(true)}
-                    onError={(e) => console.log("video error:", e.currentTarget.error)}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isPlaying ? "opacity-100" : "opacity-100"
-                        }`}
-                />
-            )}
+        <>
+            <div
+                onClick={handleVideoPage}
+                onMouseEnter={stopVideo}
+                onMouseLeave={startVideo}
+                onFocus={stopVideo}
+                onBlur={startVideo}
+                tabIndex={0}
+                className="group relative aspect-square lg:aspect-4/5 rounded-2xl overflow-hidden cursor-pointer focus:outline-none"
+            >
+                <Toaster />
+                {video.url && (
+                    <video
+                        autoPlay
+                        ref={videoRef}
+                        src={video.url}
+                        poster={video.url}
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        onPlaying={() => setIsPlaying(true)}
+                        onError={(e) => console.log("video error:", e.currentTarget.error)}
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isPlaying ? "opacity-100" : "opacity-100"
+                            }`}
+                    />
+                )}
 
-            <div className="absolute inset-0 bg-transparent group-hover:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-transparent group-hover:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10"></div>
 
-            {isAdmin ?
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10 invisible cursor-pointer group-hover:visible flex flex-col justify-center items-center gap-4 md:gap-6 xl:gap-8 text-xl lg:text-2xl
+                {isAdmin ?
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black group-active:bg-black/60 group-focus:bg-black/60 transition-colors duration-500 z-10 invisible cursor-pointer group-hover:visible flex flex-col justify-center items-center gap-4 md:gap-6 xl:gap-8 text-xl lg:text-2xl
                                 text-white">
-                    <button type="button"
-                        onClick={() => handleEdit()}
-                        className='rounded-xl border border-white hover:bg-white hover:text-black cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Edit <SquarePen /></button>
-                    <button type="button"
-                        onClick={() => handleRemove()}
-                        className='rounded-xl border border-white hover:bg-logo hover:text-white cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Remove <Trash /></button>
-                </div> :
+                        <button type="button"
+                            onClick={() => handleEdit()}
+                            className='rounded-xl border border-white hover:bg-white hover:text-black cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Edit <SquarePen /></button>
+                        <button type="button"
+                            onClick={() => handleRemove()}
+                            className='rounded-xl border border-white hover:bg-logo hover:text-white cursor-pointer transition-colors duration-300 px-4 py-2 flex items-center gap-3'>Remove <Trash /></button>
+                    </div> :
 
-                <div className="absolute text-left inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 sm:bg-transparent sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500">
-                    <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
-                        {video.client_name}
-                    </h3>
-                    <div className="h-px w-12 bg-logo/50 my-4"></div>
-                    <p className="text-gray-300 text-sm mb-4">{video.category}</p>
+                    <div className="absolute text-left inset-0 p-8 flex flex-col justify-end z-20 opacity-100 translate-y-0 bg-black/60 sm:bg-transparent sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-500">
+                        <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
+                            {clientName}
+                        </h3>
+                        <div className="h-px w-12 bg-logo/50 my-4"></div>
+                        <p className="text-gray-300 text-sm mb-4">{category}</p>
+                    </div>
+                }
+
+            </div>
+            {isEditOpen && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+                    role="presentation"
+                    onMouseDown={() => setIsEditOpen(false)}
+                >
+                    <div
+                        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-2xl"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="edit-thumbnail-video-title"
+                        onMouseDown={(event) => event.stopPropagation()}
+                    >
+                        <div className="mb-6 flex items-center justify-between">
+                            <h2 id="edit-thumbnail-video-title" className="text-xl font-semibold text-gray-900">Edit thumbnail video</h2>
+                            <button
+                                type="button"
+                                onClick={() => setIsEditOpen(false)}
+                                aria-label="Close edit thumbnail video modal"
+                                className="rounded-full p-2 text-gray-500 hover:bg-gray-100"
+                            >
+                                <X className="h-5 w-5" />
+                            </button>
+                        </div>
+
+                        <form onSubmit={handleSave} className="space-y-4 text-left">
+                            <label className="block text-sm font-medium text-gray-700">
+                                Client name
+                                <input
+                                    required
+                                    value={editForm.client_name}
+                                    onChange={(event) => setEditForm({ ...editForm, client_name: event.target.value })}
+                                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+                                />
+                            </label>
+
+                            <label className="block text-sm font-medium text-gray-700">
+                                Category
+                                <input
+                                    required
+                                    value={editForm.category}
+                                    onChange={(event) => setEditForm({ ...editForm, category: event.target.value })}
+                                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2"
+                                />
+                            </label>
+
+                            {editError && <p className="text-sm text-red-600" role="alert">{editError}</p>}
+
+                            <div className="flex justify-end gap-3 pt-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsEditOpen(false)}
+                                    className="rounded-md border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    disabled={isSaving}
+                                    className="rounded-md bg-logo px-4 py-2 text-white disabled:opacity-50"
+                                >
+                                    {isSaving ? "Saving..." : "Save changes"}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            }
-
-        </div>
+            )}
+        </>
     );
 }
